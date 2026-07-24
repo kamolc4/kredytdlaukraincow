@@ -429,6 +429,46 @@ p { max-width: 70ch; }
   margin-bottom: 0.25rem;
 }
 
+/* ── ILLUSTRATED CONTENT (text + SVG two-column) ─────────────────────────── */
+.illustrated-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.illustrated-content__text { min-width: 0; }
+
+.illustrated-content__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.illustrated-content__image svg {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+}
+
+/* Remove top margin from paragraphs that's only needed in standalone context */
+.illustrated-content .quick-answer__paragraphs {
+  margin-top: 0;
+}
+
+@media (min-width: 1024px) {
+  .illustrated-content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .illustrated-content__image svg {
+    max-width: 300px;
+  }
+}
+
 /* ── SECTIONS ─────────────────────────────────────────────────────────────── */
 .section__intro {
   font-size: 1.0625rem;

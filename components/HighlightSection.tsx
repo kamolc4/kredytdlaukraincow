@@ -1,10 +1,15 @@
 import type { ContentSection } from "@/types/site-content"
+import IllustrationHipoteka from "./IllustrationHipoteka"
+import IllustrationBIK from "./IllustrationBIK"
 
 type HighlightSectionType = Extract<ContentSection, { type: "highlight" }>
 
 type Props = { section: HighlightSectionType }
 
 export default function HighlightSection({ section }: Props) {
+  const Illustration =
+    section.id === "historia-kredytowa" ? IllustrationBIK : IllustrationHipoteka
+
   return (
     <section
       id={section.id}
@@ -14,16 +19,22 @@ export default function HighlightSection({ section }: Props) {
       <div className="container">
         <h2 id={`${section.id}-heading`}>{section.title}</h2>
 
-        <div className="highlight-section">
-          <div className="highlight-section__paragraphs">
-            {section.paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+        <div className="illustrated-content">
+          <div className="illustrated-content__text">
+            <div className="highlight-section__paragraphs">
+              {section.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+
+            {section.notice && (
+              <p className="highlight-section__notice">{section.notice}</p>
+            )}
           </div>
 
-          {section.notice && (
-            <p className="highlight-section__notice">{section.notice}</p>
-          )}
+          <div className="illustrated-content__image">
+            <Illustration />
+          </div>
         </div>
 
         {section.cta && (
