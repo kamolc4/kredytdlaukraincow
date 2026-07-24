@@ -71,7 +71,7 @@ export const siteContent: SiteContent = {
   // ── HERO ────────────────────────────────────────────────────────────────────
   hero: {
     badge: "Analiza bez zapytania do BIK",
-    eyebrow: "Możliwa analiza również bez karty pobytu",
+    eyebrow: "Możliwy kredyt bez karty pobytu",
     h1: "Kredyt dla Ukraińców w Polsce – sprawdź swoją sytuację",
     lead: "Sprawdź, jakie znaczenie mają status pobytu, forma zatrudnienia, dochód, historia kredytowa i wymagane dokumenty. Wstępna analiza możliwa również bez karty pobytu – każda sytuacja oceniana jest indywidualnie. Wynik nie jest decyzją banku ani gwarancją finansowania.",
     primaryCta: {

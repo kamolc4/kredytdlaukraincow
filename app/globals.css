@@ -319,6 +319,7 @@ p { max-width: 70ch; }
   text-transform: uppercase;
   color: var(--primary);
   margin-bottom: 0.75rem;
+  margin-left: 1rem;
 }
 
 .hero__h1 { margin-bottom: 1rem; }
