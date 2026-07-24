@@ -66,7 +66,7 @@ export function validateLeadForm(
   }
 
   if (!raw.income || typeof raw.income !== "string") {
-    errors.income = "Wybierz przedział dochodów"
+    errors.income = "Wybierz źródło dochodu"
   }
 
   if (!raw.consent) {

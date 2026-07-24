@@ -1,14 +1,9 @@
 /**
  * ─────────────────────────────────────────────────────────────────────────────
- * INSTRUKCJA DLA NOWEJ STRONY
+ * KONFIGURACJA STRONY: kredytdlaukraincow.pl
  * ─────────────────────────────────────────────────────────────────────────────
- * Aby utworzyć nową stronę, edytuj wyłącznie ten plik, `.env.local`
- * oraz opcjonalnie grafikę doradcy (public/adviser.webp) i favicon (public/favicon.svg).
- *
- * Komponenty są generyczne i nie wymagają edycji.
- *
- * Placeholdery w nawiasach kwadratowych [ … ] muszą być wypełnione
- * przed ustawieniem seo.noindex = false (build zatrzyma się, gdy je wykryje).
+ * Edytuj wyłącznie ten plik oraz .env.local.
+ * Placeholdery [ … ] muszą być uzupełnione przed ustawieniem seo.noindex = false.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -17,33 +12,30 @@ import type { SiteContent } from "@/types/site-content"
 export const siteContent: SiteContent = {
   // ── STRONA / SEO ────────────────────────────────────────────────────────────
   site: {
-    name: "[NAZWA STRONY]",
-    domain: "[NAZWA DOMENY].pl",
-    canonicalUrl: "https://[NAZWA DOMENY].pl",
+    name: "Kredyt dla Ukraińców",
+    domain: "kredytdlaukraincow.pl",
+    canonicalUrl: "https://kredytdlaukraincow.pl",
     language: "pl",
     locale: "pl_PL",
     // Tytuł strony (do ~60 znaków)
-    title: "[TYTUŁ STRONY] – [GŁÓWNA FRAZA]",
+    title: "Kredyt dla Ukraińców w Polsce – warunki i pomoc",
     // Meta description (do ~155 znaków)
     description:
-      "Uzyskaj [GŁÓWNA FRAZA] szybko i bezpiecznie. Bezpłatna analiza zdolności kredytowej. Skontaktuj się z doradcą – [TELEFON].",
-    ogTitle: "[TYTUŁ STRONY] – [GŁÓWNA FRAZA]",
+      "Sprawdź warunki kredytu dla Ukraińców w Polsce. Kredyt hipoteczny, gotówkowy, karta pobytu, PESEL UKR, dokumenty i wstępna analiza sytuacji.",
+    ogTitle: "Kredyt dla Ukraińców w Polsce – warunki i pomoc",
     ogDescription:
-      "Sprawdź, jak uzyskać [GŁÓWNA FRAZA]. Bezpłatna analiza i wsparcie doradcy kredytowego.",
-    // Format ISO 8601: YYYY-MM-DD
+      "Sprawdź warunki kredytu dla Ukraińców w Polsce. Kredyt hipoteczny, gotówkowy, karta pobytu, PESEL UKR i wstępna analiza sytuacji.",
     lastUpdated: "2026-07-24",
   },
 
   // ── MARKA ───────────────────────────────────────────────────────────────────
   brand: {
-    logoText: "[NAZWA STRONY]",
-    shortName: "[SKRÓT]",
-    // Opcjonalny wyróżniony fragment w logo (wyświetlany innym kolorem)
+    logoText: "kredytdlaukraincow.pl",
+    shortName: "KdU",
     accentText: ".pl",
   },
 
   // ── MOTYW KOLORYSTYCZNY ─────────────────────────────────────────────────────
-  // Zmień jeden kolor akcentowy dla całej strony.
   theme: {
     primary: "#1d6fa4",
     primaryHover: "#155d8c",
@@ -54,23 +46,21 @@ export const siteContent: SiteContent = {
   contact: {
     adviserName: "[IMIĘ I NAZWISKO]",
     companyName: "[NAZWA FIRMY]",
-    // Numer w formacie tel: (bez spacji, z prefiksem +48 lub bez)
     phone: "+48000000000",
-    // Numer wyświetlany na stronie
     phoneDisplay: "000 000 000",
     email: "[E-MAIL]",
     address: "[ADRES]",
     nip: "[NIP]",
     serviceArea: "[OBSZAR OBSŁUGI]",
-    // Ścieżka do zdjęcia doradcy w /public
     adviserImage: "/adviser-placeholder.svg",
     privacyEmail: "[E-MAIL DO SPRAW PRYWATNOŚCI]",
   },
 
   // ── NAWIGACJA ───────────────────────────────────────────────────────────────
   navigation: [
-    { label: "O kredycie", href: "#o-kredycie" },
-    { label: "Wymagania", href: "#wymagania" },
+    { label: "Rodzaje kredytu", href: "#rodzaje-kredytu" },
+    { label: "Status pobytu", href: "#status-pobytu" },
+    { label: "Dokumenty", href: "#dokumenty" },
     { label: "Proces", href: "#proces" },
     { label: "FAQ", href: "#faq" },
     { label: "Kontakt", href: "#formularz" },
@@ -78,233 +68,302 @@ export const siteContent: SiteContent = {
 
   // ── HERO ────────────────────────────────────────────────────────────────────
   hero: {
-    // Opcjonalny nadtytuł nad H1
-    eyebrow: "[KRÓTKIE HASŁO / NADTYTUŁ]",
-    // Główny nagłówek H1 – jeden na całej stronie
-    h1: "[GŁÓWNA FRAZA] – bezpłatna analiza zdolności kredytowej",
-    lead: "Pomagamy uzyskać [GŁÓWNA FRAZA] nawet w trudnych sytuacjach. Sprawdź swoje możliwości bez zobowiązań.",
+    h1: "Kredyt dla Ukraińców w Polsce – sprawdź swoją sytuację",
+    lead: "Sprawdź, jakie znaczenie mają status pobytu, forma zatrudnienia, dochód, historia kredytowa i wymagane dokumenty. Wstępna analiza nie jest decyzją banku ani gwarancją finansowania.",
     primaryCta: {
-      label: "Sprawdź bezpłatnie",
+      label: "Sprawdź swoją sytuację",
       href: "#formularz",
     },
     secondaryCta: {
-      label: "Zadzwoń teraz",
-      href: "tel:+48000000000",
+      label: "Zobacz wymagane dokumenty",
+      href: "#dokumenty",
     },
-    checklistTitle: "Dlaczego warto:",
+    checklistTitle: "Bank może brać pod uwagę:",
     checklist: [
-      "Bezpłatna analiza zdolności kredytowej",
-      "Pomoc doradcy na każdym etapie",
-      "Szybka odpowiedź – nawet w 24 h",
-      "Obsługa trudnych przypadków",
+      "Status i legalność pobytu",
+      "Rodzaj oraz ważność dokumentów",
+      "Formę zatrudnienia",
+      "Wysokość i walutę dochodu",
+      "Historię kredytową",
+      "Aktualne zobowiązania",
+      "Liczbę osób w gospodarstwie domowym",
+      "Wkład własny przy kredycie hipotecznym",
+      "Rodzaj finansowanej nieruchomości",
     ],
-    badge: "Bezpłatna konsultacja",
   },
 
   // ── SZYBKA ODPOWIEDŹ ────────────────────────────────────────────────────────
   quickAnswer: {
     id: "o-kredycie",
-    title: "Czym jest [GŁÓWNA FRAZA]?",
+    title: "Czy Ukrainiec może dostać kredyt w Polsce?",
     paragraphs: [
-      "[GŁÓWNA FRAZA] to forma finansowania dostępna dla [GRUPA KLIENTÓW]. W odróżnieniu od standardowych produktów bankowych, uwzględnia specyficzną sytuację tej grupy – m.in. [SPECYFIKA 1] oraz [SPECYFIKA 2].",
-      "Dzięki znajomości oferty wielu banków i instytucji finansowych jesteśmy w stanie dopasować produkt do Twojej konkretnej sytuacji, nawet jeśli wcześniej spotkałeś się z odmową.",
+      "Obywatelstwo Ukrainy samo w sobie nie oznacza automatycznej odmowy. Osoba nieposiadająca polskiego obywatelstwa może ubiegać się o kredyt – zarówno gotówkowy, jak i hipoteczny – jednak każdy bank stosuje własne zasady i może stawiać dodatkowe wymagania wobec cudzoziemców.",
+      "Rodzaj posiadanego dokumentu pobytowego i okres jego ważności mogą mieć istotne znaczenie przy ocenie wniosku. Bank ocenia stabilność sytuacji klienta, dochód i jego regularność, aktualne zobowiązania, koszty utrzymania gospodarstwa domowego oraz historię terminowych spłat.",
+      "Wymagania dla kredytu hipotecznego są zwykle bardziej szczegółowe niż dla gotówkowego. Ostateczny wynik zależy od całości sytuacji klienta i aktualnych zasad wybranego banku – różnice między instytucjami mogą być znaczące.",
     ],
     notice: {
       title: "Ważne:",
-      text: "Każda sytuacja jest inna. Skontaktuj się z nami, aby uzyskać indywidualną ocenę Twojej zdolności kredytowej.",
+      text: "Informacje na stronie mają charakter ogólny. Wstępna analiza nie jest decyzją kredytową ani gwarancją uzyskania finansowania.",
     },
   },
 
   // ── SEKCJE TREŚCI ───────────────────────────────────────────────────────────
-  // Możesz zmieniać kolejność, usuwać lub dodawać sekcje.
-  // Dostępne typy: "text" | "split" | "checklist" | "cards" | "highlight"
   sections: [
+    // 1. Rodzaje kredytu
     {
       type: "split",
-      id: "rodzaje-kredytow",
-      title: "Rodzaje finansowania dla [GRUPA KLIENTÓW]",
+      id: "rodzaje-kredytu",
+      title: "Jaki kredyt może otrzymać obywatel Ukrainy?",
       intro:
-        "Współpracujemy z bankami i instytucjami, które mają doświadczenie w obsłudze [GRUPA KLIENTÓW].",
+        "Możliwe są dwa główne rodzaje kredytu. Różnią się celem, procesem i wymaganiami. Wymagania dla kredytu hipotecznego są zazwyczaj bardziej szczegółowe.",
       columns: [
         {
-          title: "Kredyt gotówkowy",
+          title: "Kredyt hipoteczny dla Ukraińców",
           paragraphs: [
-            "Środki wypłacane jednorazowo na dowolny cel. Idealne rozwiązanie, gdy potrzebujesz szybko określonej kwoty.",
+            "Kredyt hipoteczny może finansować zakup mieszkania lub domu, budowę albo inny cel mieszkaniowy akceptowany przez bank. Proces jest dłuższy i bardziej szczegółowy niż przy kredycie gotówkowym.",
+            "Bank analizuje nieruchomość, wymaga dokumentów od sprzedającego lub dewelopera, ocenia wkład własny i weryfikuje status pobytu. Nie każdy bank obsługuje kredyty hipoteczne dla obywateli Ukrainy na tych samych zasadach.",
           ],
           bullets: [
-            "Kwota od [X] do [Y] zł",
-            "Okres spłaty do [N] lat",
-            "Decyzja w [N] dni roboczych",
+            "Cel: zakup, budowa lub remont nieruchomości",
+            "Zabezpieczenie: hipoteka na finansowanej nieruchomości",
+            "Wkład własny: standardowo wymagany",
+            "Status pobytu może mieć decydujące znaczenie",
+            "Wymagania różnią się pomiędzy bankami",
+          ],
+        },
+        {
+          title: "Kredyt gotówkowy dla Ukraińców",
+          paragraphs: [
+            "Kredyt gotówkowy może być przeznaczony na różne cele. Bank ocenia dochód, zatrudnienie i zobowiązania. Może wymagać dokumentów pobytowych, uwzględniać historię rachunku i sprawdzać BIK.",
+            "Warunki różnią się pomiędzy bankami. Dostępna kwota nie oznacza automatycznie, że dane zobowiązanie będzie odpowiednie dla Twojej sytuacji.",
+          ],
+          bullets: [
+            "Cel: dowolny",
+            "Brak wymogu zabezpieczenia na nieruchomości",
+            "Szybsza decyzja niż przy kredycie hipotecznym",
+            "Wymagania zależą od banku i sytuacji klienta",
+          ],
+        },
+      ],
+      cta: {
+        label: "Sprawdź swoją sytuację",
+        href: "#formularz",
+      },
+    },
+
+    // 2. Status pobytu
+    {
+      type: "cards",
+      id: "status-pobytu",
+      title: "Karta pobytu, PESEL UKR i status pobytowy",
+      intro:
+        "Status pobytowy jest jednym z elementów ocenianych przy wniosku kredytowym. Wymagania różnią się w zależności od banku i rodzaju kredytu.",
+      items: [
+        {
+          title: "Kredyt z kartą czasowego pobytu",
+          text: "Karta czasowego pobytu może być akceptowana przez niektóre banki, ale nie przez wszystkie na tych samych zasadach. Znaczenie może mieć okres ważności dokumentu – krótki termin ważności bywa czynnikiem negatywnym przy ocenie wniosku.",
+        },
+        {
+          title: "Kredyt z kartą stałego pobytu",
+          text: "Karta stałego pobytu może ułatwiać ocenę stabilności sytuacji pobytowej. Nie gwarantuje jednak pozytywnej decyzji – bank nadal ocenia dochód, zobowiązania i pozostałe elementy zdolności kredytowej.",
+        },
+        {
+          title: "Kredyt bez karty pobytu",
+          text: "Brak karty pobytu utrudnia spełnienie wymagań większości banków, ale nie jest automatyczną przeszkodą w każdym przypadku. Wymagania dla kredytu gotówkowego i hipotecznego mogą się różnić. Każdy przypadek wymaga indywidualnej weryfikacji.",
+        },
+        {
+          title: "Czy PESEL UKR wystarczy?",
+          text: "PESEL UKR potwierdza rejestrację w systemie, ale sam w sobie nie musi spełniać wszystkich wymagań banku dotyczących dokumentu pobytowego. Bank może wymagać dodatkowego dokumentu potwierdzającego legalność i status pobytu.",
+        },
+      ],
+    },
+
+    // 3. Wkład własny
+    {
+      type: "highlight",
+      id: "wklad-wlasny",
+      title: "Kredyt hipoteczny dla Ukraińców bez wkładu własnego – czy to możliwe?",
+      paragraphs: [
+        "Standardowe kredyty hipoteczne zwykle wymagają odpowiedniego wkładu własnego lub innego zabezpieczenia akceptowanego przez bank. Samo nieposiadanie gotówki na wkład własny nie eliminuje pozostałych wymagań – bank nadal ocenia dochód, zdolność kredytową, zobowiązania, nieruchomość i status pobytu.",
+        "Istnieją rozwiązania gwarancyjne, które mogą zastąpić część wymaganego wkładu. Mają one jednak szczegółowe warunki, a zasady i grono uczestniczących banków mogą się zmieniać. Możliwość skorzystania z takiego rozwiązania przez osobę z Ukrainy zależy od aktualnych warunków konkretnego programu i banku.",
+        "Możliwość uzyskania kredytu hipotecznego bez standardowego wkładu własnego należy sprawdzać indywidualnie, uwzględniając aktualną sytuację klienta i bieżące zasady banku.",
+      ],
+      notice:
+        "Dostępność rozwiązań bez wkładu własnego może zmieniać się w czasie. Zawsze warto sprawdzić aktualne warunki indywidualnie.",
+    },
+
+    // 4. Dokumenty
+    {
+      type: "checklist",
+      id: "dokumenty",
+      title: "Jakie dokumenty mogą być potrzebne?",
+      intro:
+        "Poniżej typowe dokumenty, które mogą być wymagane. Dokładna lista zależy od rodzaju kredytu, banku, źródła dochodu i statusu pobytu.",
+      groups: [
+        {
+          title: "Tożsamość i pobyt",
+          items: [
+            "Paszport lub inny akceptowany dokument tożsamości",
+            "Karta pobytu albo inny dokument legalizujący pobyt",
+            "Decyzja pobytowa, jeśli wymagana przez bank",
+            "PESEL, jeśli wymagany przez bank lub proces",
+            "Dokument potwierdzający adres zamieszkania, jeśli wymagany",
+            "Dokumenty uzupełniające wskazane przez bank",
+          ],
+        },
+        {
+          title: "Dochód i zatrudnienie",
+          items: [
+            "Umowa o pracę, zlecenie lub umowa o dzieło",
+            "Zaświadczenie o zatrudnieniu i dochodach",
+            "Historia wpływów na rachunek bankowy",
+            "Wyciągi bankowe z wymaganego okresu",
+            "Dokumenty podatkowe, jeśli wymagane",
+            "Dokumenty działalności gospodarczej, jeśli dotyczy",
+            "Dokumenty potwierdzające ciągłość dochodu",
           ],
         },
         {
           title: "Kredyt hipoteczny",
-          paragraphs: [
-            "Finansowanie zakupu nieruchomości lub remontu z zabezpieczeniem na hipotece.",
-          ],
-          bullets: [
-            "Wkład własny od [N]%",
-            "Okres spłaty do [N] lat",
-            "Możliwość konsolidacji",
-          ],
-        },
-      ],
-    },
-    {
-      type: "checklist",
-      id: "wymagania",
-      title: "Wymagania i dokumenty",
-      intro:
-        "Lista dokumentów może różnić się w zależności od banku i rodzaju kredytu. Poniżej przedstawiamy typowe wymagania.",
-      groups: [
-        {
-          title: "Dokumenty tożsamości",
           items: [
-            "[DOKUMENT 1] – wymagany przez wszystkie banki",
-            "[DOKUMENT 2] – jeśli dotyczy",
-            "[DOKUMENT 3] – opcjonalnie",
-          ],
-        },
-        {
-          title: "Dokumenty dochodowe",
-          items: [
-            "[DOKUMENT 1] – umowa o pracę lub inny dokument",
-            "[DOKUMENT 2] – zaświadczenie o zarobkach",
-            "[DOKUMENT 3] – wyciąg z konta za ostatnie 3 miesiące",
+            "Umowa rezerwacyjna, przedwstępna lub deweloperska",
+            "Dokumenty nieruchomości wskazane przez bank",
+            "Dokumenty sprzedającego lub dewelopera",
+            "Potwierdzenie wkładu własnego",
+            "Dokumenty do wyceny nieruchomości",
+            "Kosztorys lub harmonogram przy budowie lub remoncie, jeśli wymagany",
+            "Dodatkowe dokumenty wskazane przez bank",
           ],
         },
       ],
       notice:
-        "Nie posiadasz wszystkich dokumentów? Skontaktuj się z nami – pomożemy znaleźć rozwiązanie.",
+        "Dokładna lista zależy od rodzaju kredytu, banku, źródła dochodu, statusu pobytu i konkretnej nieruchomości.",
     },
+
+    // 5. Dochód i zatrudnienie
     {
-      type: "cards",
-      id: "zrodla-dochodu",
-      title: "Akceptowane źródła dochodu",
+      type: "text",
+      id: "dochod",
+      title: "Dochód i zatrudnienie a zdolność kredytowa",
       intro:
-        "Pracujemy z klientami o różnych źródłach dochodu. Oto najczęstsze, z którymi możemy pomóc:",
-      items: [
-        {
-          title: "Umowa o pracę",
-          text: "Najkorzystniejsze warunki. Akceptowana przez wszystkich partnerów bankowych.",
-        },
-        {
-          title: "Działalność gospodarcza",
-          text: "Możliwe po przepracowaniu minimum [N] miesięcy. Wymagane zeznania podatkowe.",
-        },
-        {
-          title: "Umowa zlecenie / o dzieło",
-          text: "Część banków akceptuje. Wymagana ciągłość przez ostatnie [N] miesięcy.",
-        },
-        {
-          title: "Inne źródła",
-          text: "Emerytura, renta, wynajem, alimenty – każdy przypadek analizujemy indywidualnie.",
-        },
+        "Bank ocenia nie tylko to, ile zarabiasz, ale też w jaki sposób i czy dochód jest stabilny. Banki różnią się sposobem oceny poszczególnych form zatrudnienia i rodzajów dochodu.",
+      paragraphs: [
+        "Umowa o pracę na czas nieokreślony jest zwykle oceniana najkorzystniej. Umowa na czas określony może być akceptowana, ale bank może sprawdzać termin jej ważności. Umowa zlecenie lub o dzieło bywa akceptowana przez część banków, jednak może wymagać udokumentowania ciągłości przez określony czas – wymagania są różne.",
+        "Działalność gospodarcza wymaga zazwyczaj dłuższej historii prowadzenia i dokumentacji dochodowej lub podatkowej. Dochód w PLN jest oceniany bezpośrednio. Dochód w innej walucie bank może przeliczać według własnych zasad lub stosować dodatkowe bufory, co może wpływać na obliczoną zdolność kredytową.",
+        "Znaczenie mają też stabilność wpływów, długość historii zatrudnienia u obecnego pracodawcy oraz ewentualny okres próbny. Każdy bank stosuje własne kryteria – nie istnieje jedna obowiązująca zasada dotycząca minimalnego stażu pracy.",
+        "Na zdolność kredytową wpływają również aktualne zobowiązania: raty innych kredytów, limity na kartach kredytowych, limity w rachunku, koszty utrzymania gospodarstwa domowego i liczba osób na utrzymaniu. Im wyższe zobowiązania w stosunku do dochodu, tym niżej oceniana zdolność.",
       ],
     },
+
+    // 6. Historia kredytowa
     {
       type: "highlight",
-      id: "dlaczego-my",
-      title: "Dlaczego klienci wybierają naszą pomoc?",
+      id: "historia-kredytowa",
+      title: "Historia kredytowa i BIK",
       paragraphs: [
-        "Specjalizujemy się w trudniejszych przypadkach. Znamy wymagania i procedury banków współpracujących z [GRUPA KLIENTÓW].",
-        "Nie pobieramy opłat z góry. Nasza prowizja pochodzi wyłącznie od banku, z którym ostatecznie zawrzesz umowę.",
+        "BIK gromadzi informacje o zobowiązaniach kredytowych raportowanych przez instytucje finansowe współpracujące z BIK. Bank może sprawdzać terminowość spłat, aktualny poziom zadłużenia i historię korzystania z produktów kredytowych.",
+        "Brak historii kredytowej nie jest tym samym co historia negatywna – może jednak oznaczać, że bank ma mniej danych do oceny. Aktywne zobowiązania wpływają na obliczoną zdolność. Sam dobry wynik w BIK nie gwarantuje pozytywnej decyzji – każdy bank stosuje własny scoring i własne kryteria oceny.",
+        "Wstępna analiza wykonywana na podstawie przesłanego formularza nie jest scoringiem BIK i nie jest zapytaniem do rejestru. To wstępna ocena sytuacji na podstawie podanych informacji.",
       ],
       notice:
-        "Działamy na terenie [OBSZAR OBSŁUGI]. Konsultacje prowadzimy online i telefonicznie.",
+        "Formularz nie pobiera ani nie przetwarza raportu BIK. Analiza opiera się wyłącznie na informacjach podanych przez klienta.",
     },
   ],
 
   // ── PROCES ──────────────────────────────────────────────────────────────────
   process: {
     id: "proces",
-    title: "Jak przebiega współpraca?",
-    intro: "Prosty, przejrzysty proces w kilku krokach.",
+    title: "Jak wygląda pomoc krok po kroku?",
+    intro: "Każda sprawa zaczyna się od zebrania podstawowych informacji.",
     steps: [
       {
-        title: "Wypełnij formularz",
-        text: "Podaj podstawowe informacje o swojej sytuacji. Zajmuje to mniej niż 3 minuty.",
+        title: "Przesyłasz podstawowe informacje",
+        text: "Opisujesz rodzaj kredytu, status pobytu, źródło dochodu i swoją sytuację. Formularz nie wymaga podawania numerów dokumentów ani danych bankowych.",
       },
       {
-        title: "Bezpłatna analiza",
-        text: "Doradca skontaktuje się z Tobą i przeanalizuje Twoją zdolność kredytową.",
+        title: "Wstępna analiza sytuacji",
+        text: "Sprawdzane są najważniejsze informacje dotyczące pobytu, dochodu, zatrudnienia, zobowiązań i celu kredytu. Analiza nie jest decyzją banku ani scoringiem BIK.",
       },
       {
-        title: "Dopasowanie oferty",
-        text: "Przedstawiamy najlepsze dostępne opcje i pomagamy wybrać najkorzystniejszą.",
+        title: "Informacja o dalszych możliwościach",
+        text: "Otrzymujesz informację, jakie elementy wymagają doprecyzowania i jakie dokumenty mogą być potrzebne do kolejnego etapu.",
       },
       {
-        title: "Złożenie wniosku",
-        text: "Pomagamy przygotować dokumenty i przeprowadzamy przez cały proces aplikacji.",
-      },
-      {
-        title: "Wypłata środków",
-        text: "Po pozytywnej decyzji banku środki trafiają na Twoje konto.",
+        title: "Dalsze przygotowanie sprawy",
+        text: "Jeżeli sytuacja daje podstawy do dalszego działania, można przejść do dokładniejszej analizy i przygotowania dokumentów niezbędnych do złożenia wniosku.",
       },
     ],
   },
 
-  // ── TRUDNOŚCI / ISSUES ──────────────────────────────────────────────────────
+  // ── TRUDNOŚCI ───────────────────────────────────────────────────────────────
   issues: {
-    id: "trudne-przypadki",
-    title: "Pomagamy nawet w trudnych sytuacjach",
+    id: "trudnosci",
+    title: "Co może utrudnić uzyskanie kredytu?",
     intro:
-      "Nie zrażaj się wcześniejszymi odmowami. Wiele osób uzyskuje kredyt po skonsultowaniu się z doradcą.",
+      "Każda z poniższych okoliczności może mieć wpływ na ocenę wniosku. Nie każda jest jednak automatyczną przeszkodą.",
     items: [
-      "Wcześniejsza odmowa kredytu w banku",
-      "Nieregularne lub mieszane źródła dochodu",
-      "Krótki staż pracy lub nowa umowa",
-      "Wpis w BIK lub BIG",
-      "Brak historii kredytowej",
-      "[SPECYFICZNA TRUDNOŚĆ DLA TEJ GRUPY]",
+      "Zbyt krótki okres ważności dokumentu pobytowego",
+      "Brak dokumentu akceptowanego przez wybrany bank",
+      "Krótka historia uzyskiwania dochodu w Polsce",
+      "Nieregularne lub zmienne wpływy na rachunek",
+      "Dochód w walucie nieakceptowanej przez bank",
+      "Okres próbny w bieżącym zatrudnieniu",
+      "Częste zmiany zatrudnienia lub przerwy w ciągłości",
+      "Wysokie raty innych kredytów lub pożyczek",
+      "Aktywne limity kredytowe i limity w rachunku",
+      "Opóźnienia w spłacie zobowiązań",
+      "Brak wymaganego wkładu własnego",
+      "Niekompletna lub niespójna dokumentacja",
+      "Problemy prawne albo techniczne nieruchomości",
     ],
     notice:
-      "Każdą sytuację analizujemy indywidualnie. Zadzwoń lub wypełnij formularz – bez zobowiązań.",
+      "Odmowa w jednym banku nie oznacza automatycznie odmowy w każdym banku. Nie warto jednak wysyłać wielu nieskoordynowanych wniosków bez wcześniejszej analizy sytuacji.",
   },
 
   // ── FORMULARZ ───────────────────────────────────────────────────────────────
   form: {
     id: "formularz",
-    title: "Zapytaj o swoje możliwości",
+    title: "Sprawdź swoją sytuację",
     intro:
-      "Wypełnij formularz – oddzwonimy do Ciebie w ciągu jednego dnia roboczego.",
-    submitLabel: "Wyślij zapytanie",
-    successTitle: "Dziękujemy za kontakt!",
+      "Przekaż podstawowe informacje. Pozwolą one przygotować się do pierwszego kontaktu i ustalić, jakie dane lub dokumenty mogą być potrzebne.",
+    submitLabel: "Poproś o wstępną analizę",
+    successTitle: "Dziękujemy za przesłanie formularza",
     successMessage:
-      "Twoje zapytanie zostało przyjęte. Doradca skontaktuje się z Tobą wkrótce.",
-    // Opcjonalna informacja o obsłudze w innym języku
-    languageNotice: undefined,
+      "Twoje zapytanie zostało przesłane. Kontakt nastąpi po zapoznaniu się z podanymi informacjami.",
+    languageNotice:
+      "Потрібна допомога українською мовою? Залиште номер телефону та зазначте це в повідомленні.",
     creditTypeOptions: [
-      "Kredyt gotówkowy",
       "Kredyt hipoteczny",
-      "Konsolidacja kredytów",
-      "Inne / nie wiem",
+      "Kredyt gotówkowy",
+      "Kredyt konsolidacyjny",
+      "Jeszcze nie wiem",
     ],
     situationOptions: [
-      "Stała praca (umowa o pracę)",
-      "Własna działalność gospodarcza",
-      "Umowa zlecenie / o dzieło",
-      "Emerytura / renta",
-      "Inna sytuacja",
+      "Karta stałego pobytu",
+      "Karta czasowego pobytu",
+      "PESEL UKR lub inny dokument",
+      "Brak karty pobytu",
+      "Oczekiwanie na decyzję pobytową",
+      "Wolę omówić telefonicznie",
     ],
     incomeOptions: [
-      "Do 3 000 zł netto",
-      "3 000–5 000 zł netto",
-      "5 000–8 000 zł netto",
-      "Powyżej 8 000 zł netto",
-      "Wolę nie podawać",
+      "Umowa o pracę",
+      "Umowa zlecenie lub umowa o dzieło",
+      "Działalność gospodarcza",
+      "Dochód zagraniczny",
+      "Inne",
     ],
     consentText:
-      "Wyrażam zgodę na przetwarzanie moich danych osobowych przez [NAZWA FIRMY] w celu udzielenia odpowiedzi na moje zapytanie oraz przedstawienia oferty kredytowej. Wiem, że mogę cofnąć zgodę w każdej chwili.",
+      "Wyrażam zgodę na kontakt w sprawie przesłanego zapytania i potwierdzam zapoznanie się z informacją o przetwarzaniu danych.",
   },
 
   // ── DORADCA ─────────────────────────────────────────────────────────────────
   adviser: {
     id: "doradca",
-    title: "Twój doradca kredytowy",
+    title: "Kto analizuje Twoją sytuację?",
     text: [
-      "[IMIĘ I NAZWISKO] – doradca kredytowy z doświadczeniem w obsłudze [GRUPA KLIENTÓW]. Pomaga klientom uzyskać finansowanie bankowe dostosowane do ich specyficznej sytuacji.",
-      "Działam na terenie [OBSZAR OBSŁUGI]. Konsultacje prowadzę online i telefonicznie – skontaktuj się ze mną bezpośrednio.",
+      "Każda sytuacja jest analizowana indywidualnie. Wstępna rozmowa służy ustaleniu, jakie informacje i dokumenty będą potrzebne oraz czy istnieje realna podstawa do dalszego porównania możliwości finansowania.",
+      "Zakres dalszej pomocy zależy od rodzaju kredytu, sytuacji klienta, dokumentów oraz aktualnych zasad instytucji finansowych.",
     ],
   },
 
@@ -314,49 +373,90 @@ export const siteContent: SiteContent = {
     title: "Najczęstsze pytania",
     items: [
       {
-        question: "Czy usługa doradztwa jest bezpłatna?",
+        question: "Czy Ukrainiec może dostać kredyt w Polsce?",
         answer:
-          "Tak. Doradztwo i analiza zdolności kredytowej są bezpłatne. Wynagrodzenie doradcy pochodzi wyłącznie od banku, z którym podpiszesz umowę kredytową.",
+          "Obywatelstwo Ukrainy samo w sobie nie jest przeszkodą. Osoba z Ukrainy może ubiegać się o kredyt, jednak każdy bank stosuje własne wymagania wobec cudzoziemców. Kluczowe znaczenie mają status pobytowy, dochód, forma zatrudnienia i historia spłat. Wynik zależy od całości sytuacji.",
       },
       {
-        question: "Jak długo trwa proces uzyskania kredytu?",
+        question: "Czy można dostać kredyt bez karty pobytu?",
         answer:
-          "Czas zależy od rodzaju kredytu i banku. Kredyt gotówkowy można uzyskać nawet w ciągu kilku dni roboczych. Kredyt hipoteczny trwa zwykle od 4 do 8 tygodni.",
+          "Brak karty pobytu utrudnia spełnienie wymagań większości banków, szczególnie przy kredycie hipotecznym. Część banków może brać pod uwagę inne dokumenty potwierdzające legalność pobytu. Każdy przypadek wymaga indywidualnej weryfikacji – nie ma jednej reguły obowiązującej we wszystkich bankach.",
       },
       {
-        question: "Co, jeśli mam negatywną historię kredytową?",
+        question: "Czy karta czasowego pobytu wystarczy do kredytu?",
         answer:
-          "Negatywna historia w BIK nie oznacza automatycznej odmowy. Pracujemy z bankami, które stosują indywidualne podejście do oceny ryzyka. Skontaktuj się z nami, aby omówić Twoją sytuację.",
+          "Część banków może akceptować kartę czasowego pobytu, ale nie wszystkie stosują te same zasady. Znaczenie ma też okres ważności dokumentu – krótki termin może być czynnikiem negatywnym. Wymagania różnią się dla kredytu gotówkowego i hipotecznego.",
       },
       {
-        question: "[PYTANIE SPECYFICZNE DLA TEJ GRUPY 1]",
+        question: "Czy karta stałego pobytu gwarantuje otrzymanie kredytu?",
         answer:
-          "[ODPOWIEDŹ SPECYFICZNA DLA TEJ GRUPY 1 – opisz konkretne wymagania lub procedury]",
+          "Karta stałego pobytu może ułatwiać ocenę stabilności sytuacji pobytowej, jednak nie gwarantuje pozytywnej decyzji kredytowej. Bank nadal ocenia dochód, zatrudnienie, zobowiązania, historię spłat i inne elementy zdolności kredytowej.",
       },
       {
-        question: "[PYTANIE SPECYFICZNE DLA TEJ GRUPY 2]",
-        answer: "[ODPOWIEDŹ SPECYFICZNA DLA TEJ GRUPY 2]",
+        question: "Czy PESEL UKR wystarczy do kredytu?",
+        answer:
+          "PESEL UKR potwierdza rejestrację w systemie, ale sam w sobie może nie spełniać wszystkich wymagań banku. Bank może wymagać dodatkowo dokumentu potwierdzającego status i legalność pobytu. Wymagania zależą od banku i rodzaju kredytu.",
       },
       {
-        question: "Jak mogę się skontaktować z doradcą?",
+        question: "Czy Ukrainiec może dostać kredyt hipoteczny?",
         answer:
-          "Zadzwoń na numer [TELEFON] lub wypełnij formularz kontaktowy na tej stronie. Oddzwaniamy w ciągu jednego dnia roboczego.",
+          "Kredyt hipoteczny dla obywatela Ukrainy jest możliwy w niektórych bankach, jednak wymagania są zazwyczaj bardziej szczegółowe niż dla obywateli polskich. Status pobytu, dochód, wkład własny i dokumenty mają decydujące znaczenie. Nie każdy bank oferuje ten produkt dla cudzoziemców na tych samych zasadach.",
+      },
+      {
+        question: "Czy Ukrainiec może dostać kredyt gotówkowy?",
+        answer:
+          "Kredyt gotówkowy jest dostępny w części banków dla osób z Ukrainy. Bank ocenia dochód, zatrudnienie i aktualne zobowiązania. Może wymagać dokumentów pobytowych i sprawdzać historię rachunku. Warunki różnią się pomiędzy instytucjami.",
+      },
+      {
+        question: "Czy możliwy jest kredyt hipoteczny bez wkładu własnego?",
+        answer:
+          "Standardowe kredyty hipoteczne wymagają wkładu własnego. Istnieją rozwiązania gwarancyjne, które mogą zastąpić część wkładu, jednak mają szczegółowe warunki i nie są dostępne dla każdego. Dostępność takich rozwiązań dla osób z Ukrainy należy sprawdzać indywidualnie.",
+      },
+      {
+        question: "Jakie dokumenty mogą być potrzebne?",
+        answer:
+          "Zazwyczaj wymagany jest dokument tożsamości, dokument potwierdzający status pobytu oraz dokumenty dochodowe – umowa, zaświadczenie, wyciągi bankowe. Przy kredycie hipotecznym dochodzą dokumenty nieruchomości. Dokładna lista zależy od banku, rodzaju kredytu i Twojej sytuacji.",
+      },
+      {
+        question: "Jak długo trzeba pracować w Polsce?",
+        answer:
+          "Nie ma jednej obowiązującej zasady. Każdy bank stosuje własne wymagania dotyczące okresu zatrudnienia. Forma umowy, ciągłość zatrudnienia i historia dochodu mogą być równie ważne jak sam staż. Warto sprawdzić wymagania konkretnego banku.",
+      },
+      {
+        question: "Czy dochód w obcej walucie może być zaakceptowany?",
+        answer:
+          "Część banków akceptuje dochód w walutach obcych, jednak może go przeliczać według własnych zasad lub stosować dodatkowe bufory bezpieczeństwa. Może to wpłynąć na obliczoną zdolność kredytową. Podejście zależy od konkretnego banku.",
+      },
+      {
+        question: "Czy brak historii w BIK oznacza odmowę?",
+        answer:
+          "Brak historii kredytowej nie jest tym samym co historia negatywna. Może jednak oznaczać, że bank ma mniej danych do oceny wiarygodności kredytowej. Część banków jest bardziej elastyczna wobec osób bez historii kredytowej. Każdy wniosek jest oceniany całościowo.",
+      },
+      {
+        question: "Czy dochód z umowy zlecenia może być zaakceptowany?",
+        answer:
+          "Tak, część banków akceptuje dochód z umowy zlecenia, jednak mogą wymagać udokumentowania ciągłości przez określony czas i regularności wpływów. Wymagania różnią się pomiędzy bankami.",
+      },
+      {
+        question: "Czy wstępna analiza jest decyzją banku?",
+        answer:
+          "Nie. Wstępna analiza na podstawie przesłanego formularza to ocena sytuacji oparta na podanych informacjach. Nie jest decyzją banku, nie jest scoringiem BIK i nie jest gwarancją uzyskania finansowania. Służy ustaleniu, czy sytuacja daje podstawy do dalszego działania.",
       },
     ],
   },
 
   // ── KOŃCOWE CTA ─────────────────────────────────────────────────────────────
   finalCta: {
-    title: "Gotowy sprawdzić swoje możliwości?",
-    text: "Bezpłatna analiza zdolności kredytowej. Bez zobowiązań.",
-    buttonLabel: "Wypełnij formularz",
+    title: "Nie wiesz, jakie wymagania dotyczą Twojej sytuacji?",
+    text: "Opisz krótko swoją sytuację. Wstępna analiza pomoże ustalić, jakie informacje będą potrzebne i czy warto przejść do kolejnego etapu.",
+    buttonLabel: "Poproś o wstępną analizę",
     buttonHref: "#formularz",
   },
 
   // ── STOPKA ──────────────────────────────────────────────────────────────────
   footer: {
     disclaimer:
-      "Treści zamieszczone na stronie mają charakter informacyjny i nie stanowią oferty w rozumieniu Kodeksu Cywilnego. Warunki kredytu zależą od indywidualnej oceny banku.",
+      "Informacje zamieszczone na stronie mają charakter ogólny i nie stanowią oferty, rekomendacji kredytowej, decyzji banku ani gwarancji uzyskania finansowania. Ostateczne warunki zależą od indywidualnej oceny klienta i aktualnych zasad banku.",
     copyright: `© ${new Date().getFullYear()} [NAZWA FIRMY]. Wszelkie prawa zastrzeżone.`,
   },
 
@@ -365,26 +465,30 @@ export const siteContent: SiteContent = {
     adminName: "[IMIĘ I NAZWISKO / NAZWA FIRMY]",
     adminAddress: "[ADRES]",
     contactEmail: "[E-MAIL DO SPRAW PRYWATNOŚCI]",
-    dataRetentionPeriod: "[OKRES PRZECHOWYWANIA – np. 3 lata od zakończenia współpracy]",
+    dataRetentionPeriod:
+      "[OKRES PRZECHOWYWANIA – np. 3 lata od zakończenia współpracy]",
     dataRecipients: [
-      "Banki i instytucje finansowe – w zakresie niezbędnym do przedstawienia oferty kredytowej",
+      "Banki i instytucje finansowe – w zakresie niezbędnym do analizy możliwości finansowania",
       "Dostawcy usług IT – wyłącznie w zakresie niezbędnym do obsługi technicznej strony",
     ],
     processingPurpose:
-      "Udzielenie odpowiedzi na zapytanie kredytowe oraz przedstawienie spersonalizowanej oferty.",
-    legalBasis:
-      "Art. 6 ust. 1 lit. a RODO (zgoda osoby, której dane dotyczą).",
+      "Udzielenie odpowiedzi na zapytanie dotyczące kredytu oraz wstępna analiza sytuacji kredytowej.",
+    legalBasis: "Art. 6 ust. 1 lit. a RODO (zgoda osoby, której dane dotyczą).",
   },
 
   // ── SEO ─────────────────────────────────────────────────────────────────────
   seo: {
-    primaryKeyword: "[GŁÓWNA FRAZA]",
+    primaryKeyword: "kredyt dla ukraińców",
     secondaryKeywords: [
-      "[FRAZA POBOCZNA 1]",
-      "[FRAZA POBOCZNA 2]",
-      "[FRAZA POBOCZNA 3]",
+      "kredyt dla ukraińców w Polsce",
+      "kredyt hipoteczny dla ukraińców",
+      "kredyt gotówkowy dla ukraińców",
+      "kredyt dla ukraińców z kartą pobytu",
+      "kredyt dla ukraińców bez karty pobytu",
+      "zdolność kredytowa dla Ukraińca",
+      "dokumenty do kredytu dla Ukraińca",
     ],
-    // WAŻNE: ustaw na false dopiero przed publikacją i po wypełnieniu wszystkich placeholderów
+    // WAŻNE: ustaw na false dopiero po uzupełnieniu wszystkich danych i konfiguracji Resend
     noindex: true,
     schemaType: "FinancialService",
   },

@@ -266,10 +266,10 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
               )}
             </div>
 
-            {/* Sytuacja */}
+            {/* Sytuacja / status pobytu */}
             <div className="form-group">
               <label className="form-label" htmlFor={`${uid}-situation`}>
-                Twoja sytuacja <span aria-hidden="true">*</span>
+                Status pobytu <span aria-hidden="true">*</span>
               </label>
               <select
                 id={`${uid}-situation`}
@@ -294,10 +294,10 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
               )}
             </div>
 
-            {/* Dochód */}
+            {/* Źródło dochodu */}
             <div className="form-group">
               <label className="form-label" htmlFor={`${uid}-income`}>
-                Przybliżone dochody netto <span aria-hidden="true">*</span>
+                Źródło dochodu <span aria-hidden="true">*</span>
               </label>
               <select
                 id={`${uid}-income`}
