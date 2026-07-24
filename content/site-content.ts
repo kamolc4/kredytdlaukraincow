@@ -30,7 +30,7 @@ export const siteContent: SiteContent = {
 
   // ── MARKA ───────────────────────────────────────────────────────────────────
   brand: {
-    logoText: "kredytdlaukraincow.pl",
+    logoText: "KredytDlaUkrainca.pl",
     shortName: "KdU",
     accentText: ".pl",
   },
@@ -331,7 +331,7 @@ export const siteContent: SiteContent = {
     successMessage:
       "Twoje zapytanie zostało przesłane. Kontakt nastąpi po zapoznaniu się z podanymi informacjami.",
     languageNotice:
-      "Потрібна консультація українською мовою? Вкажіть це в полі повідомлення, і ми постараємося зв'язатися з Вами українською.",
+      "Потрібна консультація українською мовою? Повідомте про це в полі повідомлення, і ми організуємо контакт із консультантом, який розмовляє українською.",
     creditTypeOptions: [
       "Kredyt hipoteczny",
       "Kredyt gotówkowy",
