@@ -380,7 +380,13 @@ p { max-width: 70ch; }
 
 .hero__main { min-width: 0; }
 
-.hero__panel { min-width: 0; }
+.hero__panel {
+  min-width: 0;
+  background: var(--primary-soft);
+  border: 1px solid rgba(29, 111, 164, 0.18);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+}
 
 @media (min-width: 1024px) {
   .hero { padding-block: 4.5rem 4rem; }
@@ -397,10 +403,18 @@ p { max-width: 70ch; }
   .hero__lead { font-size: 1.125rem; }
 
   .hero__panel {
-    background: var(--primary-soft);
-    border: 1px solid rgba(29, 111, 164, 0.18);
     border-radius: var(--radius-lg);
     padding: 1.5rem 1.75rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero__eyebrow {
+    display: block;
+    margin-left: 0;
+  }
+  .hero__actions .btn {
+    width: 100%;
   }
 }
 
@@ -886,6 +900,16 @@ p { max-width: 70ch; }
   border: 0;
 }
 
+@media (max-width: 479px) {
+  .lead-form {
+    padding: 1.25rem 1rem;
+  }
+  .lead-form__lang-notice {
+    display: block;
+    border-radius: var(--radius-sm);
+  }
+}
+
 /* ── ADVISER ──────────────────────────────────────────────────────────────── */
 .adviser { display: flex; flex-direction: column; gap: 1.5rem; max-width: 720px; margin-inline: auto; }
 
@@ -901,6 +925,12 @@ p { max-width: 70ch; }
   object-fit: cover;
   border: 3px solid var(--primary-soft);
   box-shadow: 0 0 0 4px var(--surface), 0 0 0 6px var(--border);
+}
+
+@media (max-width: 599px) {
+  .adviser__image {
+    align-self: center;
+  }
 }
 
 .adviser__body { min-width: 0; }
