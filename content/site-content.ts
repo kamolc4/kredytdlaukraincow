@@ -18,13 +18,13 @@ export const siteContent: SiteContent = {
     language: "pl",
     locale: "pl_PL",
     // Tytuł strony (do ~60 znaków)
-    title: "Kredyt dla Ukraińców w Polsce – warunki i pomoc",
+    title: "Kredyt dla Ukraińców - kredyt hipoteczny bez karty pobytu",
     // Meta description (do ~155 znaków)
     description:
-      "Sprawdź warunki kredytu dla Ukraińców w Polsce. Kredyt hipoteczny, gotówkowy, karta pobytu, PESEL UKR, dokumenty i wstępna analiza sytuacji.",
-    ogTitle: "Kredyt dla Ukraińców w Polsce – warunki i pomoc",
+      "Sprawdź, czy możesz otrzymać kredyt hipoteczny lub gotówkowy jako obywatel Ukrainy. Możliwa analiza również bez karty pobytu. Wypełnij formularz i sprawdź swoją sytuację.",
+    ogTitle: "Kredyt dla Ukraińców - kredyt hipoteczny bez karty pobytu",
     ogDescription:
-      "Sprawdź warunki kredytu dla Ukraińców w Polsce. Kredyt hipoteczny, gotówkowy, karta pobytu, PESEL UKR i wstępna analiza sytuacji.",
+      "Sprawdź, czy możesz otrzymać kredyt hipoteczny lub gotówkowy jako obywatel Ukrainy. Możliwa analiza również bez karty pobytu.",
     lastUpdated: "2026-07-24",
   },
 
@@ -71,8 +71,9 @@ export const siteContent: SiteContent = {
   // ── HERO ────────────────────────────────────────────────────────────────────
   hero: {
     badge: "Analiza bez zapytania do BIK",
+    eyebrow: "Możliwa analiza również bez karty pobytu",
     h1: "Kredyt dla Ukraińców w Polsce – sprawdź swoją sytuację",
-    lead: "Sprawdź, jakie znaczenie mają status pobytu, forma zatrudnienia, dochód, historia kredytowa i wymagane dokumenty. Wstępna analiza nie jest decyzją banku ani gwarancją finansowania.",
+    lead: "Sprawdź, jakie znaczenie mają status pobytu, forma zatrudnienia, dochód, historia kredytowa i wymagane dokumenty. Wstępna analiza możliwa również bez karty pobytu – każda sytuacja oceniana jest indywidualnie. Wynik nie jest decyzją banku ani gwarancją finansowania.",
     primaryCta: {
       label: "Sprawdź swoją sytuację",
       href: "#formularz",
@@ -172,7 +173,7 @@ export const siteContent: SiteContent = {
         },
         {
           title: "Kredyt bez karty pobytu",
-          text: "Brak karty pobytu utrudnia spełnienie wymagań większości banków, ale nie jest automatyczną przeszkodą w każdym przypadku. Wymagania dla kredytu gotówkowego i hipotecznego mogą się różnić. Każdy przypadek wymaga indywidualnej weryfikacji.",
+          text: "Finansowanie jest możliwe również bez karty pobytu, pod warunkiem spełnienia wymagań banku. Każda sytuacja analizowana jest indywidualnie – decyzja zależy od całości sytuacji klienta, rodzaju kredytu i aktualnych warunków banku.",
         },
         {
           title: "Czy PESEL UKR wystarczy?",
@@ -396,7 +397,7 @@ export const siteContent: SiteContent = {
       {
         question: "Czy można dostać kredyt bez karty pobytu?",
         answer:
-          "Brak karty pobytu utrudnia spełnienie wymagań większości banków, szczególnie przy kredycie hipotecznym. Część banków może brać pod uwagę inne dokumenty potwierdzające legalność pobytu. Każdy przypadek wymaga indywidualnej weryfikacji – nie ma jednej reguły obowiązującej we wszystkich bankach.",
+          "Finansowanie jest możliwe również bez karty pobytu, pod warunkiem spełnienia wymagań banku. Każda sytuacja analizowana jest indywidualnie – decyzja zależy od rodzaju kredytu, statusu pobytu, dochodu i pozostałych elementów sytuacji klienta. Brak karty pobytu nie wyklucza automatycznie możliwości uzyskania kredytu.",
       },
       {
         question: "Czy karta czasowego pobytu wystarczy do kredytu?",

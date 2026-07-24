@@ -1,6 +1,7 @@
 const items = [
   "osoby posiadające kartę pobytu (stałego lub czasowego)",
-  "osoby legitymujące się numerem PESEL UKR lub innym dokumentem pobytu",
+  "osoby bez karty pobytu – możliwa analiza indywidualna",
+  "osoby z numerem PESEL UKR lub innym dokumentem pobytu",
   "osoby zatrudnione na umowie zlecenie lub umowie o dzieło",
   "osoby prowadzące własną działalność gospodarczą",
   "osoby, które wcześniej spotkały się z odmową kredytu",
