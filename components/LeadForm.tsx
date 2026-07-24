@@ -420,7 +420,11 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                       disabled={isLoading}
                     />
                     <label className="form-consent__label" htmlFor={`${uid}-consent`}>
-                      {config.consentText}{" "}
+                      Wyrażam zgodę na kontakt w sprawie przesłanego zapytania i potwierdzam zapoznanie się z{" "}
+                      <a href="/polityka-prywatnosci" className="form-consent__policy-link">
+                        Polityką prywatności
+                      </a>
+                      , w tym z informacją o możliwości przekazania sprawy odpowiedniemu ekspertowi kredytowemu.{" "}
                       <span aria-hidden="true">*</span>
                     </label>
                   </div>

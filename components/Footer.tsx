@@ -1,4 +1,5 @@
 import type { SiteContent } from "@/types/site-content"
+import CookieSettingsButton from "./CookieSettingsButton"
 
 type Props = {
   footer: SiteContent["footer"]
@@ -15,14 +16,18 @@ export default function Footer({ footer, brand, contact }: Props) {
           {/* Kolumna 1: marka + opis */}
           <div className="footer__col">
             <p className="footer__brand">{brand.logoText}</p>
-            <p className="footer__tagline">
-              Informacje na stronie mają charakter ogólny i nie stanowią decyzji kredytowej.
-            </p>
+            <p className="footer__tagline">{footer.disclaimer}</p>
           </div>
 
           {/* Kolumna 2: kontakt */}
           <div className="footer__col">
             <p className="footer__col-title">Kontakt</p>
+            <div className="footer__contact-block">
+              <p className="footer__contact-name">{contact.adviserName}</p>
+              {contact.adviserTitle && (
+                <p className="footer__contact-role">{contact.adviserTitle}</p>
+              )}
+            </div>
             <ul className="footer__col-links" role="list">
               <li>
                 <a
@@ -42,7 +47,7 @@ export default function Footer({ footer, brand, contact }: Props) {
             </ul>
           </div>
 
-          {/* Kolumna 3: linki + dane firmy */}
+          {/* Kolumna 3: linki */}
           <div className="footer__col">
             <p className="footer__col-title">Informacje</p>
             <ul className="footer__col-links" role="list">
@@ -51,20 +56,26 @@ export default function Footer({ footer, brand, contact }: Props) {
                   Polityka prywatności
                 </a>
               </li>
+              <li>
+                <CookieSettingsButton className="footer__cookie-btn" />
+              </li>
+              {contact.creditReportUrl && (
+                <li>
+                  <a
+                    href={contact.creditReportUrl}
+                    className="footer__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    RaportKredytowy.pl
+                  </a>
+                </li>
+              )}
             </ul>
-
-            {contact.companyName && (
-              <address className="footer__col-address">
-                {contact.companyName}
-                {contact.address && <><br />{contact.address}</>}
-                {contact.nip && <><br />NIP: {contact.nip}</>}
-              </address>
-            )}
           </div>
         </div>
 
         <div className="footer__bottom">
-          <p className="footer__disclaimer">{footer.disclaimer}</p>
           <p className="footer__copyright">{footer.copyright}</p>
         </div>
       </div>

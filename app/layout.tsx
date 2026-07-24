@@ -3,6 +3,7 @@ import "./globals.css"
 import { siteContent } from "@/lib/site-config"
 import { buildJsonLd } from "@/lib/schema"
 import JsonLd from "@/components/JsonLd"
+import CookieBanner from "@/components/CookieBanner"
 
 const { site, seo, theme } = siteContent
 
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Przejdź do treści
         </a>
         {children}
+        <CookieBanner />
       </body>
     </html>
   )

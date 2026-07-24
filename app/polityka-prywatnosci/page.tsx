@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { siteContent } from "@/lib/site-config"
+import CookieSettingsButton from "@/components/CookieSettingsButton"
 
-const { site, privacyPolicy, contact } = siteContent
+const { site, contact, brand } = siteContent
 
 export const metadata: Metadata = {
   title: `Polityka prywatności – ${site.name}`,
@@ -21,114 +22,288 @@ export default function PrivacyPage() {
 
           <h1>Polityka prywatności</h1>
 
-          {/* UWAGA: Poniższy dokument jest szablonem i wymaga weryfikacji przez prawnika
-              przed opublikowaniem. Nie stanowi porady prawnej ani gwarancji zgodności z RODO. */}
+          {/* Uwaga: dokument opisuje faktyczne działanie serwisu.
+              Przed opublikowaniem zalecana weryfikacja prawna. */}
 
+          {/* 1. Administrator */}
           <section>
-            <h2>1. Administrator danych</h2>
+            <h2>1. Administrator danych osobowych</h2>
             <p>
-              Administratorem Twoich danych osobowych jest{" "}
-              <strong>{privacyPolicy.adminName}</strong>, {privacyPolicy.adminAddress}.
+              Administratorem danych osobowych jest <strong>{contact.adviserName}</strong>,
+              prowadzący serwis <strong>{brand.logoText}</strong>.
             </p>
             <p>
-              Kontakt w sprawach dotyczących danych osobowych:{" "}
-              <a href={`mailto:${privacyPolicy.contactEmail}`}>
-                {privacyPolicy.contactEmail}
+              Kontakt w sprawach dotyczących danych osobowych:
+            </p>
+            <ul>
+              <li>
+                E-mail:{" "}
+                <a href={`mailto:${contact.email}`}>{contact.email}</a>
+              </li>
+              <li>
+                Telefon:{" "}
+                <a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a>
+              </li>
+            </ul>
+            <p>
+              Brak formalnego adresu pocztowego w tej polityce wynika z tego,
+              że nie został on podany do publicznej wiadomości. W razie potrzeby
+              kontaktu w sprawach danych osobowych skorzystaj z powyższych danych.
+            </p>
+          </section>
+
+          {/* 2. Jakie dane */}
+          <section>
+            <h2>2. Jakie dane są zbierane</h2>
+            <p>
+              Zbieramy wyłącznie dane podane dobrowolnie przez Ciebie w formularzu
+              kontaktowym:
+            </p>
+            <ul>
+              <li>imię i nazwisko,</li>
+              <li>numer telefonu,</li>
+              <li>adres e-mail,</li>
+              <li>rodzaj poszukiwanego kredytu,</li>
+              <li>status pobytu,</li>
+              <li>źródło dochodu,</li>
+              <li>informacje wpisane w polu opisu sytuacji (opcjonalnie),</li>
+              <li>
+                techniczne informacje niezbędne do ochrony formularza przed
+                nadużyciami (honeypot),
+              </li>
+              <li>decyzje dotyczące plików cookies.</li>
+            </ul>
+            <p>
+              Nie zbieramy numerów PESEL, numerów dokumentów tożsamości,
+              numerów kart płatniczych ani danych wrażliwych.
+            </p>
+          </section>
+
+          {/* 3. Cele */}
+          <section>
+            <h2>3. Cele przetwarzania danych</h2>
+            <p>Twoje dane przetwarzamy w następujących celach:</p>
+            <ul>
+              <li>udzielenie odpowiedzi na przesłane zapytanie,</li>
+              <li>przeprowadzenie wstępnej analizy sytuacji kredytowej,</li>
+              <li>kontakt telefoniczny lub e-mailowy w sprawie zapytania,</li>
+              <li>
+                przygotowanie informacji dotyczących możliwego finansowania,
+              </li>
+              <li>
+                przekazanie sprawy odpowiedniemu ekspertowi kredytowemu, jeżeli
+                będzie to potrzebne,
+              </li>
+              <li>
+                zapewnienie kontaktu z ekspertem mówiącym po ukraińsku, jeżeli
+                użytkownik o to poprosi,
+              </li>
+              <li>ochrona formularza przed nadużyciami i spamem,</li>
+              <li>
+                prowadzenie dokumentacji zapytania w systemie CRM,
+              </li>
+              <li>
+                analiza ruchu na stronie – wyłącznie po uzyskaniu Twojej zgody,
+                jeżeli używane są narzędzia analityczne.
+              </li>
+            </ul>
+          </section>
+
+          {/* 4. Podstawy prawne */}
+          <section>
+            <h2>4. Podstawy prawne przetwarzania</h2>
+            <ul>
+              <li>
+                <strong>Zgoda (art. 6 ust. 1 lit. a RODO)</strong> – dotyczy
+                kontaktu w sprawie zapytania, przekazania sprawy ekspertowi oraz
+                opcjonalnych plików cookies analitycznych. Zgodę można wycofać
+                w każdym momencie bez wpływu na legalność przetwarzania
+                dokonanego przed jej wycofaniem.
+              </li>
+              <li>
+                <strong>
+                  Prawnie uzasadniony interes administratora (art. 6 ust. 1
+                  lit. f RODO)
+                </strong>{" "}
+                – dotyczy obsługi korespondencji, zapewnienia bezpieczeństwa
+                serwisu oraz ewentualnego dochodzenia lub obrony roszczeń.
+              </li>
+            </ul>
+            <p>
+              Zgoda przy formularzu nie jest zgodą marketingową – dotyczy
+              wyłącznie obsługi przesłanego zapytania.
+            </p>
+          </section>
+
+          {/* 5. CRM */}
+          <section>
+            <h2>5. System CRM RaportKredytowy.pl</h2>
+            <p>
+              Dane przesłane przez formularz mogą być zapisywane i obsługiwane
+              w systemie CRM wykorzystywanym w ramach serwisu{" "}
+              <a
+                href={contact.creditReportUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                RaportKredytowy.pl
               </a>
+              . System służy do rejestrowania zapytań, organizacji kontaktu
+              oraz obsługi dalszych etapów sprawy.
+            </p>
+            <p>
+              RaportKredytowy.pl nie jest w tym przypadku odrębnym
+              administratorem danych, ponieważ system pozostaje pod kontrolą
+              tego samego administratora – {contact.adviserName}.
+            </p>
+            <p>
+              Zapisanie danych w systemie CRM RaportKredytowy.pl nie oznacza
+              ich publicznego udostępnienia ani automatycznego przekazania do
+              Lendi.
             </p>
           </section>
 
+          {/* 6. Lendi */}
           <section>
-            <h2>2. Cel i podstawa przetwarzania</h2>
+            <h2>6. Możliwe przekazanie danych do Lendi lub eksperta kredytowego</h2>
             <p>
-              Twoje dane osobowe przetwarzamy w celu:{" "}
-              {privacyPolicy.processingPurpose}
+              Dane mogą zostać przekazane do Lendi albo ekspertowi kredytowemu
+              współpracującemu z Lendi wyłącznie wtedy, gdy będzie to potrzebne
+              do dalszej obsługi zapytania, analizy możliwości finansowania,
+              przygotowania oferty lub zapewnienia kontaktu z odpowiednim
+              specjalistą. Dane nie są przekazywane automatycznie w każdym
+              przypadku. Zakres przekazywanych danych będzie ograniczony do
+              informacji niezbędnych do obsługi sprawy.
             </p>
-            <p>
-              Podstawa prawna: {privacyPolicy.legalBasis}
-            </p>
-          </section>
-
-          <section>
-            <h2>3. Zakres zbieranych danych</h2>
-            <p>Zbieramy wyłącznie dane podane przez Ciebie dobrowolnie w formularzu kontaktowym:</p>
+            <p>Przekazanie może dotyczyć w szczególności sytuacji, gdy:</p>
             <ul>
-              <li>Imię</li>
-              <li>Numer telefonu</li>
-              <li>Adres e-mail (opcjonalnie)</li>
-              <li>Informacje o rodzaju poszukiwanego kredytu i sytuacji finansowej</li>
-              <li>Opis sytuacji (opcjonalnie)</li>
+              <li>sprawa wymaga obsługi przez innego eksperta kredytowego,</li>
+              <li>
+                użytkownik poprosi o kontakt w języku ukraińskim i niezbędne
+                będzie przekazanie sprawy ekspertowi posługującemu się tym
+                językiem,
+              </li>
+              <li>
+                konieczne będzie przekazanie zapytania osobie posiadającej
+                odpowiednie kompetencje lub licencje.
+              </li>
             </ul>
-            <p>
-              Nie zbieramy numerów PESEL, numerów dokumentów tożsamości, numerów kart ani
-              danych szczególnych kategorii.
-            </p>
           </section>
 
+          {/* 7. Odbiorcy */}
           <section>
-            <h2>4. Odbiorcy danych</h2>
-            <p>Twoje dane mogą być przekazywane wyłącznie:</p>
+            <h2>7. Odbiorcy danych</h2>
+            <p>
+              Twoje dane mogą być przekazywane wyłącznie następującym
+              kategoriom odbiorców:
+            </p>
             <ul>
-              {privacyPolicy.dataRecipients.map((recipient, i) => (
-                <li key={i}>{recipient}</li>
-              ))}
+              <li>dostawca hostingu i infrastruktury technicznej serwisu,</li>
+              <li>dostawca usługi wysyłki e-mail (Resend),</li>
+              <li>
+                system CRM wykorzystywany w ramach serwisu
+                RaportKredytowy.pl – do rejestrowania zapytań i organizacji
+                kontaktu,
+              </li>
+              <li>
+                Lendi lub ekspert kredytowy współpracujący z Lendi – wyłącznie
+                gdy będzie to potrzebne do obsługi konkretnego zapytania (patrz
+                sekcja 6),
+              </li>
+              <li>podmioty uprawnione na podstawie przepisów prawa.</li>
             </ul>
           </section>
 
+          {/* 8. Okres */}
           <section>
-            <h2>5. Okres przechowywania</h2>
+            <h2>8. Okres przechowywania danych</h2>
             <p>
-              Twoje dane przechowujemy przez: {privacyPolicy.dataRetentionPeriod}
+              Dane będą przechowywane przez okres niezbędny do obsługi
+              zapytania i dalszego kontaktu, a następnie przez okres potrzebny
+              do zabezpieczenia przed ewentualnymi roszczeniami. Dane
+              przetwarzane na podstawie zgody będą przechowywane do czasu jej
+              wycofania, chyba że istnieje inna podstawa ich dalszego
+              przechowywania.
             </p>
           </section>
 
+          {/* 9. Prawa */}
           <section>
-            <h2>6. Twoje prawa</h2>
-            <p>Masz prawo do:</p>
+            <h2>9. Twoje prawa</h2>
+            <p>Przysługuje Ci prawo do:</p>
             <ul>
               <li>dostępu do swoich danych,</li>
               <li>sprostowania danych,</li>
               <li>usunięcia danych (prawo do bycia zapomnianym),</li>
               <li>ograniczenia przetwarzania,</li>
-              <li>przeniesienia danych,</li>
-              <li>cofnięcia zgody w dowolnym momencie (bez wpływu na legalność przetwarzania przed cofnięciem),</li>
-              <li>wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (uodo.gov.pl).</li>
+              <li>sprzeciwu wobec przetwarzania opartego na uzasadnionym interesie,</li>
+              <li>przeniesienia danych (jeżeli ma zastosowanie),</li>
+              <li>
+                wycofania zgody w dowolnym momencie – bez wpływu na legalność
+                przetwarzania dokonanego przed jej wycofaniem,
+              </li>
+              <li>
+                złożenia skargi do Prezesa Urzędu Ochrony Danych Osobowych
+                (uodo.gov.pl).
+              </li>
             </ul>
+            <p>
+              Aby skorzystać z powyższych praw, skontaktuj się z administratorem
+              pod adresem:{" "}
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>.
+            </p>
           </section>
 
+          {/* 10. Dobrowolność */}
           <section>
-            <h2>7. Dobrowolność podania danych</h2>
+            <h2>10. Dobrowolność podania danych</h2>
             <p>
-              Podanie danych osobowych jest dobrowolne, jednak niezbędne do udzielenia odpowiedzi
-              na Twoje zapytanie. Brak podania danych uniemożliwi kontakt z doradcą.
+              Podanie danych jest dobrowolne. Brak podania danych oznaczonych
+              jako obowiązkowe (imię i nazwisko, numer telefonu, adres e-mail)
+              uniemożliwi przesłanie formularza i udzielenie odpowiedzi. Pola
+              opcjonalne (opis sytuacji) nie są wymagane.
             </p>
           </section>
 
+          {/* 11. Profilowanie */}
           <section>
-            <h2>8. Pliki cookie i narzędzia analityczne</h2>
+            <h2>11. Profilowanie i decyzje automatyczne</h2>
             <p>
-              Strona może korzystać z podstawowych plików cookie niezbędnych do jej działania.
-              Jeśli korzystasz z narzędzi analitycznych lub remarketingowych, opisz je tutaj.
+              Przesłanie formularza nie powoduje automatycznego podjęcia
+              decyzji kredytowej. Wstępna analiza nie jest decyzją banku,
+              scoringiem BIK ani gwarancją finansowania. Dane nie są
+              przetwarzane w sposób wywołujący skutki prawne na podstawie
+              zautomatyzowanego przetwarzania.
             </p>
           </section>
 
+          {/* 12. Cookies */}
           <section>
-            <h2>9. Kontakt</h2>
+            <h2>12. Pliki cookies</h2>
             <p>
-              W sprawach dotyczących ochrony danych osobowych skontaktuj się z nami:
+              Serwis używa niezbędnych plików cookies do prawidłowego działania
+              strony oraz zapamiętania Twojego wyboru dotyczącego cookies. Za
+              Twoją zgodą mogą być używane cookies analityczne, które pomagają
+              zrozumieć sposób korzystania z serwisu.
             </p>
             <p>
-              E-mail:{" "}
-              <a href={`mailto:${privacyPolicy.contactEmail}`}>
-                {privacyPolicy.contactEmail}
-              </a>
-              <br />
-              Telefon:{" "}
-              <a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a>
+              <strong>Niezbędne</strong> – wymagane do działania strony.
+              Zapamiętują Twój wybór dotyczący cookies i chronią formularz przed
+              nadużyciami. Nie wymagają zgody i nie można ich wyłączyć.
             </p>
+            <p>
+              <strong>Analityczne</strong> – opcjonalne. Uruchamiane wyłącznie
+              po Twojej wyraźnej zgodzie. Pomagają zrozumieć sposób korzystania
+              z serwisu.
+            </p>
+            <p>
+              Swoją decyzję możesz zmienić w dowolnym momencie, klikając
+              przycisk poniżej lub link „Ustawienia cookies" w stopce strony.
+            </p>
+            <CookieSettingsButton className="btn btn--outline" />
           </section>
 
-          <p style={{ marginTop: "2rem", fontSize: "0.8125rem", color: "var(--text-muted)", fontStyle: "italic" }}>
+          <p className="privacy-page__updated">
             Ostatnia aktualizacja: {site.lastUpdated}
           </p>
         </div>

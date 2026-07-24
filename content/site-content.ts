@@ -55,6 +55,7 @@ export const siteContent: SiteContent = {
     serviceArea: "[OBSZAR OBSŁUGI]",
     adviserImage: "/images/MyPhoto.png",
     privacyEmail: "kamil.olczyk@lendi.pl",
+    creditReportUrl: "https://raportkredytowy.pl",
   },
 
   // ── NAWIGACJA ───────────────────────────────────────────────────────────────
@@ -355,7 +356,7 @@ export const siteContent: SiteContent = {
       "Inne",
     ],
     consentText:
-      "Wyrażam zgodę na kontakt w sprawie przesłanego zapytania i potwierdzam zapoznanie się z informacją o przetwarzaniu danych.",
+      "Wyrażam zgodę na kontakt w sprawie przesłanego zapytania i potwierdzam zapoznanie się z Polityką prywatności, w tym z informacją o możliwości przekazania sprawy odpowiedniemu ekspertowi kredytowemu.",
   },
 
   // ── DORADCA ─────────────────────────────────────────────────────────────────
@@ -457,24 +458,28 @@ export const siteContent: SiteContent = {
   // ── STOPKA ──────────────────────────────────────────────────────────────────
   footer: {
     disclaimer:
-      "Informacje zamieszczone na stronie mają charakter ogólny i nie stanowią oferty, rekomendacji kredytowej, decyzji banku ani gwarancji uzyskania finansowania. Ostateczne warunki zależą od indywidualnej oceny klienta i aktualnych zasad banku.",
-    copyright: `© ${new Date().getFullYear()} [NAZWA FIRMY]. Wszelkie prawa zastrzeżone.`,
+      "Informacje zamieszczone na stronie mają charakter ogólny i nie stanowią decyzji kredytowej, rekomendacji ani gwarancji uzyskania finansowania.",
+    copyright: `© ${new Date().getFullYear()} KredytDlaUkrainca.pl. Administratorem serwisu jest Kamil Olczyk. Wszelkie prawa zastrzeżone.`,
   },
 
   // ── POLITYKA PRYWATNOŚCI ────────────────────────────────────────────────────
   privacyPolicy: {
-    adminName: "[IMIĘ I NAZWISKO / NAZWA FIRMY]",
-    adminAddress: "[ADRES]",
+    adminName: "Kamil Olczyk",
+    adminAddress: "",
     contactEmail: "kamil.olczyk@lendi.pl",
     dataRetentionPeriod:
-      "[OKRES PRZECHOWYWANIA – np. 3 lata od zakończenia współpracy]",
+      "Dane będą przechowywane przez okres niezbędny do obsługi zapytania i dalszego kontaktu, a następnie przez okres potrzebny do zabezpieczenia przed ewentualnymi roszczeniami. Dane przetwarzane na podstawie zgody będą przechowywane do czasu jej wycofania, chyba że istnieje inna podstawa ich dalszego przechowywania.",
     dataRecipients: [
-      "Banki i instytucje finansowe – w zakresie niezbędnym do analizy możliwości finansowania",
-      "Dostawcy usług IT – wyłącznie w zakresie niezbędnym do obsługi technicznej strony",
+      "Dostawca hostingu i infrastruktury technicznej serwisu",
+      "Dostawca usługi wysyłki e-mail (Resend)",
+      "System CRM wykorzystywany w ramach serwisu RaportKredytowy.pl – do rejestrowania zapytań i organizacji kontaktu",
+      "Lendi lub ekspert kredytowy współpracujący z Lendi – wyłącznie gdy będzie to potrzebne do obsługi konkretnego zapytania",
+      "Podmioty uprawnione na podstawie przepisów prawa",
     ],
     processingPurpose:
-      "Udzielenie odpowiedzi na zapytanie dotyczące kredytu oraz wstępna analiza sytuacji kredytowej.",
-    legalBasis: "Art. 6 ust. 1 lit. a RODO (zgoda osoby, której dane dotyczą).",
+      "Udzielenie odpowiedzi na zapytanie dotyczące kredytu, wstępna analiza sytuacji kredytowej oraz kontakt w sprawie możliwego finansowania.",
+    legalBasis:
+      "Zgoda osoby, której dane dotyczą (art. 6 ust. 1 lit. a RODO) oraz prawnie uzasadniony interes administratora w zakresie obsługi korespondencji i bezpieczeństwa (art. 6 ust. 1 lit. f RODO).",
   },
 
   // ── SEO ─────────────────────────────────────────────────────────────────────

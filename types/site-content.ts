@@ -94,6 +94,7 @@ export type SiteContent = {
     serviceArea: string
     adviserImage: string
     privacyEmail: string
+    creditReportUrl?: string
   }
 
   navigation: Array<{
