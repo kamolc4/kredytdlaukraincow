@@ -20,8 +20,8 @@ export default function AdviserSection({ adviser, contact }: Props) {
           <Image
             src={contact.adviserImage}
             alt={contact.adviserName}
-            width={100}
-            height={100}
+            width={120}
+            height={120}
             className="adviser__image"
           />
 

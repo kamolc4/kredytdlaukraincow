@@ -51,7 +51,7 @@ export default function HomePage() {
 
         <ProcessSection process={process} />
 
-        <IssuesSection issues={issues} phone={contact.phone} phoneDisplay={contact.phoneDisplay} />
+        <IssuesSection issues={issues} />
 
         <LeadForm
           config={form}

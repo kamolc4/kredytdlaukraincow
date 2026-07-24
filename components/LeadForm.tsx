@@ -26,6 +26,14 @@ function CheckCircleIcon() {
   )
 }
 
+function BenefitIcon() {
+  return (
+    <svg className="form-layout__benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  )
+}
+
 function useUtmParams() {
   const [utm, setUtm] = useState<Record<string, string>>({})
   useEffect(() => {
@@ -50,7 +58,6 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
   const [formState, setFormState] = useState<FormState>({ status: "idle" })
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
 
-  // Anonimowe pola techniczne pobierane po stronie klienta
   const [pageUrl, setPageUrl] = useState("")
   useEffect(() => {
     setPageUrl(window.location.href)
@@ -73,9 +80,7 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
       income: data.get("income"),
       description: data.get("description") || undefined,
       consent: data.get("consent") === "on",
-      // Honeypot
       website: data.get("website") || undefined,
-      // Techniczne
       siteName,
       pageUrl,
       primaryKeyword,
@@ -124,7 +129,7 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
           <div className="lead-form">
             <div className="form-success" role="status" aria-live="polite">
               <CheckCircleIcon />
-              <h2 className="form-success__title">{config.successTitle}</h2>
+              <h2 id={`${config.id}-heading`} className="form-success__title">{config.successTitle}</h2>
               <p className="form-success__text">{config.successMessage}</p>
             </div>
           </div>
@@ -140,255 +145,276 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
       aria-labelledby={`${config.id}-heading`}
     >
       <div className="container">
-        <h2 id={`${config.id}-heading`}>{config.title}</h2>
+        <div className="form-layout">
+          {/* Lewa kolumna: nagłówek + opis + korzyści */}
+          <div className="form-layout__lead">
+            <h2 id={`${config.id}-heading`}>{config.title}</h2>
+            <p className="form-layout__desc">{config.intro}</p>
+            <ul className="form-layout__benefits" role="list">
+              <li className="form-layout__benefit">
+                <BenefitIcon />
+                <span>Formularz nie wymaga numerów dokumentów ani danych bankowych</span>
+              </li>
+              <li className="form-layout__benefit">
+                <BenefitIcon />
+                <span>Analiza nie jest zapytaniem do BIK</span>
+              </li>
+              <li className="form-layout__benefit">
+                <BenefitIcon />
+                <span>Kontakt nastąpi po zapoznaniu się z Twoją sytuacją</span>
+              </li>
+            </ul>
+          </div>
 
-        <div className="lead-form">
-          {config.languageNotice && (
-            <p className="lead-form__lang-notice" aria-live="polite">
-              {config.languageNotice}
-            </p>
-          )}
-
-          <p className="lead-form__intro">{config.intro}</p>
-
-          <div ref={liveRegionRef} aria-live="assertive" aria-atomic="true" className="sr-only" />
-
-          <form onSubmit={handleSubmit} noValidate>
-            {/* Honeypot – widoczne tylko dla botów */}
-            <div className="form-honeypot" aria-hidden="true">
-              <label htmlFor={`${uid}-website`}>Zostaw to pole puste</label>
-              <input
-                id={`${uid}-website`}
-                name="website"
-                type="text"
-                tabIndex={-1}
-                autoComplete="off"
-              />
-            </div>
-
-            {/* Imię */}
-            <div className="form-group">
-              <label className="form-label" htmlFor={`${uid}-name`}>
-                Imię <span aria-hidden="true">*</span>
-              </label>
-              <input
-                id={`${uid}-name`}
-                name="name"
-                type="text"
-                className={`form-input${hasError("name") ? " form-input--error" : ""}`}
-                autoComplete="given-name"
-                required
-                aria-required="true"
-                aria-describedby={hasError("name") ? `${uid}-name-error` : undefined}
-                aria-invalid={hasError("name")}
-                disabled={isLoading}
-              />
-              {hasError("name") && (
-                <p id={`${uid}-name-error`} className="form-error" role="alert">
-                  {fieldErrors.name}
+          {/* Prawa kolumna: karta formularza */}
+          <div className="form-layout__card">
+            <div className="lead-form">
+              {config.languageNotice && (
+                <p className="lead-form__lang-notice" aria-live="polite">
+                  {config.languageNotice}
                 </p>
               )}
-            </div>
 
-            {/* Telefon */}
-            <div className="form-group">
-              <label className="form-label" htmlFor={`${uid}-phone`}>
-                Telefon <span aria-hidden="true">*</span>
-              </label>
-              <input
-                id={`${uid}-phone`}
-                name="phone"
-                type="tel"
-                className={`form-input${hasError("phone") ? " form-input--error" : ""}`}
-                autoComplete="tel"
-                required
-                aria-required="true"
-                aria-describedby={hasError("phone") ? `${uid}-phone-error` : undefined}
-                aria-invalid={hasError("phone")}
-                disabled={isLoading}
-                placeholder="np. 600 100 200"
-              />
-              {hasError("phone") && (
-                <p id={`${uid}-phone-error`} className="form-error" role="alert">
-                  {fieldErrors.phone}
-                </p>
-              )}
-            </div>
+              <div ref={liveRegionRef} aria-live="assertive" aria-atomic="true" className="sr-only" />
 
-            {/* E-mail (opcjonalny) */}
-            <div className="form-group">
-              <label className="form-label" htmlFor={`${uid}-email`}>
-                E-mail{" "}
-                <span className="form-label__optional">(opcjonalnie)</span>
-              </label>
-              <input
-                id={`${uid}-email`}
-                name="email"
-                type="email"
-                className={`form-input${hasError("email") ? " form-input--error" : ""}`}
-                autoComplete="email"
-                aria-describedby={hasError("email") ? `${uid}-email-error` : undefined}
-                aria-invalid={hasError("email") || undefined}
-                disabled={isLoading}
-              />
-              {hasError("email") && (
-                <p id={`${uid}-email-error`} className="form-error" role="alert">
-                  {fieldErrors.email}
-                </p>
-              )}
-            </div>
+              <form onSubmit={handleSubmit} noValidate>
+                {/* Honeypot – widoczne tylko dla botów */}
+                <div className="form-honeypot" aria-hidden="true">
+                  <label htmlFor={`${uid}-website`}>Zostaw to pole puste</label>
+                  <input
+                    id={`${uid}-website`}
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
 
-            {/* Rodzaj kredytu */}
-            <div className="form-group">
-              <label className="form-label" htmlFor={`${uid}-creditType`}>
-                Rodzaj kredytu <span aria-hidden="true">*</span>
-              </label>
-              <select
-                id={`${uid}-creditType`}
-                name="creditType"
-                className={`form-select${hasError("creditType") ? " form-select--error" : ""}`}
-                required
-                aria-required="true"
-                aria-describedby={hasError("creditType") ? `${uid}-creditType-error` : undefined}
-                aria-invalid={hasError("creditType")}
-                disabled={isLoading}
-                defaultValue=""
-              >
-                <option value="" disabled>Wybierz…</option>
-                {config.creditTypeOptions.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
-              {hasError("creditType") && (
-                <p id={`${uid}-creditType-error`} className="form-error" role="alert">
-                  {fieldErrors.creditType}
-                </p>
-              )}
-            </div>
+                {/* Imię */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor={`${uid}-name`}>
+                    Imię <span aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    id={`${uid}-name`}
+                    name="name"
+                    type="text"
+                    className={`form-input${hasError("name") ? " form-input--error" : ""}`}
+                    autoComplete="given-name"
+                    required
+                    aria-required="true"
+                    aria-describedby={hasError("name") ? `${uid}-name-error` : undefined}
+                    aria-invalid={hasError("name")}
+                    disabled={isLoading}
+                  />
+                  {hasError("name") && (
+                    <p id={`${uid}-name-error`} className="form-error" role="alert">
+                      {fieldErrors.name}
+                    </p>
+                  )}
+                </div>
 
-            {/* Sytuacja / status pobytu */}
-            <div className="form-group">
-              <label className="form-label" htmlFor={`${uid}-situation`}>
-                Status pobytu <span aria-hidden="true">*</span>
-              </label>
-              <select
-                id={`${uid}-situation`}
-                name="situation"
-                className={`form-select${hasError("situation") ? " form-select--error" : ""}`}
-                required
-                aria-required="true"
-                aria-describedby={hasError("situation") ? `${uid}-situation-error` : undefined}
-                aria-invalid={hasError("situation")}
-                disabled={isLoading}
-                defaultValue=""
-              >
-                <option value="" disabled>Wybierz…</option>
-                {config.situationOptions.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
-              {hasError("situation") && (
-                <p id={`${uid}-situation-error`} className="form-error" role="alert">
-                  {fieldErrors.situation}
-                </p>
-              )}
-            </div>
+                {/* Telefon */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor={`${uid}-phone`}>
+                    Telefon <span aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    id={`${uid}-phone`}
+                    name="phone"
+                    type="tel"
+                    className={`form-input${hasError("phone") ? " form-input--error" : ""}`}
+                    autoComplete="tel"
+                    required
+                    aria-required="true"
+                    aria-describedby={hasError("phone") ? `${uid}-phone-error` : undefined}
+                    aria-invalid={hasError("phone")}
+                    disabled={isLoading}
+                    placeholder="np. 600 100 200"
+                  />
+                  {hasError("phone") && (
+                    <p id={`${uid}-phone-error`} className="form-error" role="alert">
+                      {fieldErrors.phone}
+                    </p>
+                  )}
+                </div>
 
-            {/* Źródło dochodu */}
-            <div className="form-group">
-              <label className="form-label" htmlFor={`${uid}-income`}>
-                Źródło dochodu <span aria-hidden="true">*</span>
-              </label>
-              <select
-                id={`${uid}-income`}
-                name="income"
-                className={`form-select${hasError("income") ? " form-select--error" : ""}`}
-                required
-                aria-required="true"
-                aria-describedby={hasError("income") ? `${uid}-income-error` : undefined}
-                aria-invalid={hasError("income")}
-                disabled={isLoading}
-                defaultValue=""
-              >
-                <option value="" disabled>Wybierz…</option>
-                {config.incomeOptions.map((opt) => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
-              {hasError("income") && (
-                <p id={`${uid}-income-error`} className="form-error" role="alert">
-                  {fieldErrors.income}
-                </p>
-              )}
-            </div>
+                {/* E-mail (opcjonalny) */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor={`${uid}-email`}>
+                    E-mail{" "}
+                    <span className="form-label__optional">(opcjonalnie)</span>
+                  </label>
+                  <input
+                    id={`${uid}-email`}
+                    name="email"
+                    type="email"
+                    className={`form-input${hasError("email") ? " form-input--error" : ""}`}
+                    autoComplete="email"
+                    aria-describedby={hasError("email") ? `${uid}-email-error` : undefined}
+                    aria-invalid={hasError("email") || undefined}
+                    disabled={isLoading}
+                  />
+                  {hasError("email") && (
+                    <p id={`${uid}-email-error`} className="form-error" role="alert">
+                      {fieldErrors.email}
+                    </p>
+                  )}
+                </div>
 
-            {/* Opis (opcjonalny) */}
-            <div className="form-group">
-              <label className="form-label" htmlFor={`${uid}-description`}>
-                Krótki opis sytuacji{" "}
-                <span className="form-label__optional">(opcjonalnie)</span>
-              </label>
-              <textarea
-                id={`${uid}-description`}
-                name="description"
-                className="form-textarea"
-                rows={3}
-                disabled={isLoading}
-                placeholder="Opisz krótko swoją sytuację, jeśli chcesz – pomoże nam lepiej przygotować ofertę."
-              />
-            </div>
+                {/* Rodzaj kredytu */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor={`${uid}-creditType`}>
+                    Rodzaj kredytu <span aria-hidden="true">*</span>
+                  </label>
+                  <select
+                    id={`${uid}-creditType`}
+                    name="creditType"
+                    className={`form-select${hasError("creditType") ? " form-select--error" : ""}`}
+                    required
+                    aria-required="true"
+                    aria-describedby={hasError("creditType") ? `${uid}-creditType-error` : undefined}
+                    aria-invalid={hasError("creditType")}
+                    disabled={isLoading}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Wybierz…</option>
+                    {config.creditTypeOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  {hasError("creditType") && (
+                    <p id={`${uid}-creditType-error`} className="form-error" role="alert">
+                      {fieldErrors.creditType}
+                    </p>
+                  )}
+                </div>
 
-            {/* Zgoda */}
-            <div>
-              <div className="form-consent">
-                <input
-                  id={`${uid}-consent`}
-                  name="consent"
-                  type="checkbox"
-                  className="form-consent__checkbox"
-                  required
-                  aria-required="true"
-                  aria-describedby={hasError("consent") ? `${uid}-consent-error` : undefined}
-                  aria-invalid={hasError("consent")}
-                  disabled={isLoading}
-                />
-                <label className="form-consent__label" htmlFor={`${uid}-consent`}>
-                  {config.consentText}{" "}
-                  <span aria-hidden="true">*</span>
-                </label>
-              </div>
-              {hasError("consent") && (
-                <p id={`${uid}-consent-error`} className="form-consent__error" role="alert">
-                  {fieldErrors.consent}
-                </p>
-              )}
-            </div>
+                {/* Sytuacja / status pobytu */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor={`${uid}-situation`}>
+                    Status pobytu <span aria-hidden="true">*</span>
+                  </label>
+                  <select
+                    id={`${uid}-situation`}
+                    name="situation"
+                    className={`form-select${hasError("situation") ? " form-select--error" : ""}`}
+                    required
+                    aria-required="true"
+                    aria-describedby={hasError("situation") ? `${uid}-situation-error` : undefined}
+                    aria-invalid={hasError("situation")}
+                    disabled={isLoading}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Wybierz…</option>
+                    {config.situationOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  {hasError("situation") && (
+                    <p id={`${uid}-situation-error`} className="form-error" role="alert">
+                      {fieldErrors.situation}
+                    </p>
+                  )}
+                </div>
 
-            {formState.status === "error" && !Object.keys(fieldErrors).length && (
-              <div className="form-global-error" role="alert" aria-live="assertive">
-                {formState.message}
-              </div>
-            )}
+                {/* Źródło dochodu */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor={`${uid}-income`}>
+                    Źródło dochodu <span aria-hidden="true">*</span>
+                  </label>
+                  <select
+                    id={`${uid}-income`}
+                    name="income"
+                    className={`form-select${hasError("income") ? " form-select--error" : ""}`}
+                    required
+                    aria-required="true"
+                    aria-describedby={hasError("income") ? `${uid}-income-error` : undefined}
+                    aria-invalid={hasError("income")}
+                    disabled={isLoading}
+                    defaultValue=""
+                  >
+                    <option value="" disabled>Wybierz…</option>
+                    {config.incomeOptions.map((opt) => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  {hasError("income") && (
+                    <p id={`${uid}-income-error`} className="form-error" role="alert">
+                      {fieldErrors.income}
+                    </p>
+                  )}
+                </div>
 
-            <div className="form-submit">
-              <button
-                type="submit"
-                className="btn btn--primary btn--lg btn--full"
-                disabled={isLoading}
-                data-action="form-submit"
-                aria-busy={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <span className="spinner" aria-hidden="true" />
-                    Wysyłanie…
-                  </>
-                ) : (
-                  config.submitLabel
+                {/* Opis (opcjonalny) */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor={`${uid}-description`}>
+                    Krótki opis sytuacji{" "}
+                    <span className="form-label__optional">(opcjonalnie)</span>
+                  </label>
+                  <textarea
+                    id={`${uid}-description`}
+                    name="description"
+                    className="form-textarea"
+                    rows={3}
+                    disabled={isLoading}
+                    placeholder="Opisz krótko swoją sytuację, jeśli chcesz – pomoże nam lepiej przygotować ofertę."
+                  />
+                </div>
+
+                {/* Zgoda */}
+                <div>
+                  <div className="form-consent">
+                    <input
+                      id={`${uid}-consent`}
+                      name="consent"
+                      type="checkbox"
+                      className="form-consent__checkbox"
+                      required
+                      aria-required="true"
+                      aria-describedby={hasError("consent") ? `${uid}-consent-error` : undefined}
+                      aria-invalid={hasError("consent")}
+                      disabled={isLoading}
+                    />
+                    <label className="form-consent__label" htmlFor={`${uid}-consent`}>
+                      {config.consentText}{" "}
+                      <span aria-hidden="true">*</span>
+                    </label>
+                  </div>
+                  {hasError("consent") && (
+                    <p id={`${uid}-consent-error`} className="form-consent__error" role="alert">
+                      {fieldErrors.consent}
+                    </p>
+                  )}
+                </div>
+
+                {formState.status === "error" && !Object.keys(fieldErrors).length && (
+                  <div className="form-global-error" role="alert" aria-live="assertive">
+                    {formState.message}
+                  </div>
                 )}
-              </button>
+
+                <div className="form-submit">
+                  <button
+                    type="submit"
+                    className="btn btn--primary btn--lg btn--full"
+                    disabled={isLoading}
+                    data-action="form-submit"
+                    aria-busy={isLoading}
+                  >
+                    {isLoading ? (
+                      <>
+                        <span className="spinner" aria-hidden="true" />
+                        Wysyłanie…
+                      </>
+                    ) : (
+                      config.submitLabel
+                    )}
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>

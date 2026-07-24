@@ -7,20 +7,23 @@ type Props = {
   siteName: string
 }
 
-export default function Footer({ footer, brand, contact, siteName }: Props) {
+export default function Footer({ footer, brand, contact }: Props) {
   return (
     <footer className="footer" role="contentinfo">
       <div className="container">
-        <div className="footer__inner">
-          <p className="footer__brand">{brand.logoText}</p>
+        <div className="footer__grid">
+          {/* Kolumna 1: marka + opis */}
+          <div className="footer__col">
+            <p className="footer__brand">{brand.logoText}</p>
+            <p className="footer__tagline">
+              Informacje na stronie mają charakter ogólny i nie stanowią decyzji kredytowej.
+            </p>
+          </div>
 
-          <nav aria-label="Linki w stopce">
-            <ul className="footer__links" role="list">
-              <li>
-                <a href="/polityka-prywatnosci" className="footer__link">
-                  Polityka prywatności
-                </a>
-              </li>
+          {/* Kolumna 2: kontakt */}
+          <div className="footer__col">
+            <p className="footer__col-title">Kontakt</p>
+            <ul className="footer__col-links" role="list">
               <li>
                 <a
                   href={`tel:${contact.phone}`}
@@ -37,18 +40,31 @@ export default function Footer({ footer, brand, contact, siteName }: Props) {
                 </a>
               </li>
             </ul>
-          </nav>
+          </div>
 
-          {contact.companyName && (
-            <address style={{ fontStyle: "normal", fontSize: "0.8125rem", color: "rgba(255,255,255,0.55)" }}>
-              {contact.companyName}
-              {contact.address && <> · {contact.address}</>}
-              {contact.nip && <> · NIP: {contact.nip}</>}
-            </address>
-          )}
+          {/* Kolumna 3: linki + dane firmy */}
+          <div className="footer__col">
+            <p className="footer__col-title">Informacje</p>
+            <ul className="footer__col-links" role="list">
+              <li>
+                <a href="/polityka-prywatnosci" className="footer__link">
+                  Polityka prywatności
+                </a>
+              </li>
+            </ul>
 
+            {contact.companyName && (
+              <address className="footer__col-address">
+                {contact.companyName}
+                {contact.address && <><br />{contact.address}</>}
+                {contact.nip && <><br />NIP: {contact.nip}</>}
+              </address>
+            )}
+          </div>
+        </div>
+
+        <div className="footer__bottom">
           <p className="footer__disclaimer">{footer.disclaimer}</p>
-
           <p className="footer__copyright">{footer.copyright}</p>
         </div>
       </div>

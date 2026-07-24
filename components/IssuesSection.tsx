@@ -2,8 +2,6 @@ import type { SiteContent } from "@/types/site-content"
 
 type Props = {
   issues: SiteContent["issues"]
-  phone: string
-  phoneDisplay: string
 }
 
 function AlertIcon() {
@@ -16,7 +14,7 @@ function AlertIcon() {
   )
 }
 
-export default function IssuesSection({ issues, phone, phoneDisplay }: Props) {
+export default function IssuesSection({ issues }: Props) {
   return (
     <section
       id={issues.id}
@@ -40,10 +38,6 @@ export default function IssuesSection({ issues, phone, phoneDisplay }: Props) {
         {issues.notice && (
           <div className="issues__notice" role="note">
             {issues.notice}
-            {" "}
-            <a href={`tel:${phone}`} data-action="phone" data-cta="issues">
-              {phoneDisplay}
-            </a>
           </div>
         )}
       </div>
