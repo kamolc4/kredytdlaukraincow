@@ -10,6 +10,7 @@ import AdviserSection from "@/components/AdviserSection"
 import FAQ from "@/components/FAQ"
 import FinalCTA from "@/components/FinalCTA"
 import Footer from "@/components/Footer"
+import StickyMobileCTA from "@/components/StickyMobileCTA"
 
 export default function HomePage() {
   const {
@@ -49,19 +50,19 @@ export default function HomePage() {
           <SectionRenderer key={section.id} section={section} />
         ))}
 
+        <IssuesSection issues={issues} />
+
         <ProcessSection process={process} />
 
-        <IssuesSection issues={issues} />
+        <AdviserSection
+          adviser={adviser}
+          contact={contact}
+        />
 
         <LeadForm
           config={form}
           siteName={site.name}
           primaryKeyword={siteContent.seo.primaryKeyword}
-        />
-
-        <AdviserSection
-          adviser={adviser}
-          contact={contact}
         />
 
         <FAQ faq={faq} />
@@ -70,6 +71,7 @@ export default function HomePage() {
       </main>
 
       <Footer footer={footer} brand={brand} contact={contact} siteName={site.name} />
+      <StickyMobileCTA phone={contact.phone} phoneDisplay={contact.phoneDisplay} />
     </>
   )
 }

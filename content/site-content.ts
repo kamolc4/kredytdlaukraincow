@@ -70,6 +70,7 @@ export const siteContent: SiteContent = {
 
   // ── HERO ────────────────────────────────────────────────────────────────────
   hero: {
+    badge: "Analiza bez zapytania do BIK",
     h1: "Kredyt dla Ukraińców w Polsce – sprawdź swoją sytuację",
     lead: "Sprawdź, jakie znaczenie mają status pobytu, forma zatrudnienia, dochód, historia kredytowa i wymagane dokumenty. Wstępna analiza nie jest decyzją banku ani gwarancją finansowania.",
     primaryCta: {
@@ -77,8 +78,8 @@ export const siteContent: SiteContent = {
       href: "#formularz",
     },
     secondaryCta: {
-      label: "Zobacz wymagane dokumenty",
-      href: "#dokumenty",
+      label: "Zadzwoń do eksperta",
+      href: "tel:+48533727030",
     },
     checklistTitle: "Bank może brać pod uwagę:",
     checklist: [
@@ -178,6 +179,10 @@ export const siteContent: SiteContent = {
           text: "PESEL UKR potwierdza rejestrację w systemie, ale sam w sobie nie musi spełniać wszystkich wymagań banku dotyczących dokumentu pobytowego. Bank może wymagać dodatkowego dokumentu potwierdzającego legalność i status pobytu.",
         },
       ],
+      cta: {
+        label: "Sprawdź, co dotyczy Twojej sytuacji",
+        href: "#formularz",
+      },
     },
 
     // 3. Wkład własny
@@ -240,6 +245,10 @@ export const siteContent: SiteContent = {
       ],
       notice:
         "Dokładna lista zależy od rodzaju kredytu, banku, źródła dochodu, statusu pobytu i konkretnej nieruchomości.",
+      cta: {
+        label: "Dowiedz się, co będzie potrzebne w Twoim przypadku",
+        href: "#formularz",
+      },
     },
 
     // 5. Dochód i zatrudnienie
@@ -269,6 +278,10 @@ export const siteContent: SiteContent = {
       ],
       notice:
         "Formularz nie pobiera ani nie przetwarza raportu BIK. Analiza opiera się wyłącznie na informacjach podanych przez klienta.",
+      cta: {
+        label: "Sprawdź swoją sytuację",
+        href: "#formularz",
+      },
     },
   ],
 
