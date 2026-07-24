@@ -119,6 +119,11 @@ p { max-width: 70ch; }
 .section--alt { background: var(--surface); }
 .section--muted { background: var(--surface-muted); }
 
+.section h2 {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
 /* ── HEADER ──────────────────────────────────────────────────────────────── */
 .header {
   position: sticky;
@@ -419,11 +424,18 @@ p { max-width: 70ch; }
 .section__intro {
   font-size: 1.0625rem;
   color: var(--text-muted);
-  margin-top: 0.5rem;
-  margin-bottom: 1.75rem;
+  text-align: center;
+  max-width: 660px;
+  margin-inline: auto;
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 
-.section__cta { margin-top: 2rem; }
+.section__cta {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
 
 /* Text section */
 .text-section__paragraphs { display: flex; flex-direction: column; gap: 1.125rem; margin-top: 1.5rem; }
@@ -613,6 +625,12 @@ p { max-width: 70ch; }
 }
 
 .form-layout__lead { min-width: 0; }
+
+/* Form h2 stays left-aligned in the two-column layout */
+.form-layout__lead h2 {
+  text-align: left;
+  margin-bottom: 0;
+}
 
 .form-layout__card { min-width: 0; }
 
