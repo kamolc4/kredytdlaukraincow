@@ -331,7 +331,7 @@ export const siteContent: SiteContent = {
     successMessage:
       "Twoje zapytanie zostało przesłane. Kontakt nastąpi po zapoznaniu się z podanymi informacjami.",
     languageNotice:
-      "Потрібна консультація українською мовою? Повідомте про це в полі повідомлення, і ми організуємо контакт із консультантом, який розмовляє українською.",
+      "Потрібна консультація українською мовою? Повідомте нам про це в полі повідомлення, і з Вами зв'яжеться експерт, який розмовляє українською.",
     creditTypeOptions: [
       "Kredyt hipoteczny",
       "Kredyt gotówkowy",
