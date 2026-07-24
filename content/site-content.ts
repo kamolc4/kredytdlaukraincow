@@ -356,7 +356,7 @@ export const siteContent: SiteContent = {
       "Inne",
     ],
     consentText:
-      "Wyrażam zgodę na kontakt w sprawie przesłanego zapytania i potwierdzam zapoznanie się z Polityką prywatności, w tym z informacją o możliwości przekazania sprawy odpowiedniemu ekspertowi kredytowemu.",
+      "Wyrażam zgodę na kontakt w sprawie przesłanego zapytania oraz potwierdzam zapoznanie się z Polityką prywatności.",
   },
 
   // ── DORADCA ─────────────────────────────────────────────────────────────────
@@ -470,10 +470,12 @@ export const siteContent: SiteContent = {
     dataRetentionPeriod:
       "Dane będą przechowywane przez okres niezbędny do obsługi zapytania i dalszego kontaktu, a następnie przez okres potrzebny do zabezpieczenia przed ewentualnymi roszczeniami. Dane przetwarzane na podstawie zgody będą przechowywane do czasu jej wycofania, chyba że istnieje inna podstawa ich dalszego przechowywania.",
     dataRecipients: [
-      "Dostawca hostingu i infrastruktury technicznej serwisu",
-      "Dostawca usługi wysyłki e-mail (Resend)",
-      "System CRM wykorzystywany w ramach serwisu RaportKredytowy.pl – do rejestrowania zapytań i organizacji kontaktu",
-      "Lendi lub ekspert kredytowy współpracujący z Lendi – wyłącznie gdy będzie to potrzebne do obsługi konkretnego zapytania",
+      "Dostawcy hostingu i infrastruktury technicznej serwisu",
+      "Dostawcy poczty elektronicznej i usług wysyłki e-mail",
+      "Dostawcy systemów CRM wykorzystywanych do obsługi zapytań",
+      "Eksperci kredytowi prowadzący sprawę",
+      "Partnerzy współpracujący przy obsłudze procesu uzyskania finansowania",
+      "Podmioty świadczące usługi techniczne niezbędne do działania serwisu",
       "Podmioty uprawnione na podstawie przepisów prawa",
     ],
     processingPurpose:

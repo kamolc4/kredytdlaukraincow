@@ -135,57 +135,43 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          {/* 5. CRM */}
+          {/* 5. Obsługa zgłoszeń */}
           <section>
-            <h2>5. System CRM RaportKredytowy.pl</h2>
+            <h2>5. Obsługa zgłoszeń i systemy CRM</h2>
             <p>
-              Dane przesłane przez formularz mogą być zapisywane i obsługiwane
-              w systemie CRM wykorzystywanym w ramach serwisu{" "}
-              <a
-                href={contact.creditReportUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                RaportKredytowy.pl
-              </a>
-              . System służy do rejestrowania zapytań, organizacji kontaktu
-              oraz obsługi dalszych etapów sprawy.
+              Dane przesłane przez formularz mogą zostać zapisane w jednym lub
+              kilku systemach CRM wykorzystywanych do obsługi zapytań. Systemy
+              te służą do rejestrowania zgłoszeń, organizacji kontaktu oraz
+              obsługi dalszych etapów sprawy.
             </p>
             <p>
-              RaportKredytowy.pl nie jest w tym przypadku odrębnym
-              administratorem danych, ponieważ system pozostaje pod kontrolą
-              tego samego administratora – {contact.adviserName}.
-            </p>
-            <p>
-              Zapisanie danych w systemie CRM RaportKredytowy.pl nie oznacza
-              ich publicznego udostępnienia ani automatycznego przekazania do
-              Lendi.
+              Systemy CRM pozostają pod kontrolą administratora lub jego
+              podwykonawców technicznych i nie stanowią odrębnego administratora
+              danych. Zapisanie danych w systemie CRM nie oznacza ich
+              publicznego udostępnienia.
             </p>
           </section>
 
-          {/* 6. Lendi */}
+          {/* 6. Eksperci i partnerzy */}
           <section>
-            <h2>6. Możliwe przekazanie danych do Lendi lub eksperta kredytowego</h2>
+            <h2>6. Przekazanie danych ekspertom i partnerom</h2>
             <p>
-              Dane mogą zostać przekazane do Lendi albo ekspertowi kredytowemu
-              współpracującemu z Lendi wyłącznie wtedy, gdy będzie to potrzebne
-              do dalszej obsługi zapytania, analizy możliwości finansowania,
-              przygotowania oferty lub zapewnienia kontaktu z odpowiednim
-              specjalistą. Dane nie są przekazywane automatycznie w każdym
-              przypadku. Zakres przekazywanych danych będzie ograniczony do
-              informacji niezbędnych do obsługi sprawy.
+              Dane przesłane przez formularz mogą zostać przekazane ekspertowi
+              kredytowemu prowadzącemu sprawę lub partnerowi współpracującemu
+              przy obsłudze procesu uzyskania finansowania. Przekazanie następuje
+              wyłącznie w zakresie niezbędnym do obsługi zgłoszenia i nie jest
+              automatyczne w każdym przypadku.
             </p>
             <p>Przekazanie może dotyczyć w szczególności sytuacji, gdy:</p>
             <ul>
-              <li>sprawa wymaga obsługi przez innego eksperta kredytowego,</li>
+              <li>sprawa wymaga obsługi przez eksperta kredytowego,</li>
               <li>
-                użytkownik poprosi o kontakt w języku ukraińskim i niezbędne
-                będzie przekazanie sprawy ekspertowi posługującemu się tym
-                językiem,
+                użytkownik poprosi o kontakt w języku ukraińskim – dane mogą
+                zostać przekazane ekspertowi posługującemu się tym językiem,
               </li>
               <li>
-                konieczne będzie przekazanie zapytania osobie posiadającej
-                odpowiednie kompetencje lub licencje.
+                konieczne jest przekazanie zapytania osobie lub podmiotowi
+                posiadającemu odpowiednie kompetencje.
               </li>
             </ul>
           </section>
@@ -193,22 +179,21 @@ export default function PrivacyPage() {
           {/* 7. Odbiorcy */}
           <section>
             <h2>7. Odbiorcy danych</h2>
-            <p>
-              Twoje dane mogą być przekazywane wyłącznie następującym
-              kategoriom odbiorców:
-            </p>
+            <p>Odbiorcami danych mogą być:</p>
             <ul>
-              <li>dostawca hostingu i infrastruktury technicznej serwisu,</li>
-              <li>dostawca usługi wysyłki e-mail (Resend),</li>
+              <li>dostawcy hostingu i infrastruktury technicznej serwisu,</li>
+              <li>dostawcy poczty elektronicznej i usług wysyłki e-mail,</li>
               <li>
-                system CRM wykorzystywany w ramach serwisu
-                RaportKredytowy.pl – do rejestrowania zapytań i organizacji
-                kontaktu,
+                dostawcy systemów CRM wykorzystywanych do obsługi zapytań,
+              </li>
+              <li>eksperci kredytowi prowadzący sprawę,</li>
+              <li>
+                partnerzy współpracujący przy obsłudze procesu uzyskania
+                finansowania,
               </li>
               <li>
-                Lendi lub ekspert kredytowy współpracujący z Lendi – wyłącznie
-                gdy będzie to potrzebne do obsługi konkretnego zapytania (patrz
-                sekcja 6),
+                podmioty świadczące usługi techniczne niezbędne do działania
+                serwisu,
               </li>
               <li>podmioty uprawnione na podstawie przepisów prawa.</li>
             </ul>
