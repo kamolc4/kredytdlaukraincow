@@ -24,61 +24,65 @@ export default function Hero({ hero }: Props) {
   return (
     <section className="hero" aria-labelledby="hero-heading">
       <div className="container">
-        {hero.badge && (
-          <div className="hero__badge">
-            <ShieldIcon />
-            {hero.badge}
+        <div className="hero__grid">
+          <div className="hero__main">
+            {hero.badge && (
+              <div className="hero__badge">
+                <ShieldIcon />
+                {hero.badge}
+              </div>
+            )}
+
+            {hero.eyebrow && (
+              <p className="hero__eyebrow" aria-hidden="true">
+                {hero.eyebrow}
+              </p>
+            )}
+
+            <h1 id="hero-heading" className="hero__h1">
+              {hero.h1}
+            </h1>
+
+            <p className="hero__lead">{hero.lead}</p>
+
+            <div className="hero__actions">
+              <a
+                href={hero.primaryCta.href}
+                className="btn btn--primary btn--lg"
+                data-cta="hero-primary"
+              >
+                {hero.primaryCta.label}
+              </a>
+
+              {hero.secondaryCta && (
+                <a
+                  href={hero.secondaryCta.href}
+                  className="btn btn--outline btn--lg"
+                  data-cta="hero-secondary"
+                  data-action={hero.secondaryCta.href.startsWith("tel:") ? "phone" : undefined}
+                >
+                  {hero.secondaryCta.label}
+                </a>
+              )}
+            </div>
           </div>
-        )}
 
-        {hero.eyebrow && (
-          <p className="hero__eyebrow" aria-hidden="true">
-            {hero.eyebrow}
-          </p>
-        )}
-
-        <h1 id="hero-heading" className="hero__h1">
-          {hero.h1}
-        </h1>
-
-        <p className="hero__lead">{hero.lead}</p>
-
-        <div className="hero__actions">
-          <a
-            href={hero.primaryCta.href}
-            className="btn btn--primary btn--lg"
-            data-cta="hero-primary"
-          >
-            {hero.primaryCta.label}
-          </a>
-
-          {hero.secondaryCta && (
-            <a
-              href={hero.secondaryCta.href}
-              className="btn btn--outline btn--lg"
-              data-cta="hero-secondary"
-              data-action={hero.secondaryCta.href.startsWith("tel:") ? "phone" : undefined}
-            >
-              {hero.secondaryCta.label}
-            </a>
+          {hero.checklist.length > 0 && (
+            <div className="hero__panel">
+              {hero.checklistTitle && (
+                <p className="hero__checklist-title">{hero.checklistTitle}</p>
+              )}
+              <ul className="hero__checklist" role="list">
+                {hero.checklist.map((item, i) => (
+                  <li key={i} className="hero__checklist-item">
+                    <CheckIcon />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
-
-        {hero.checklist.length > 0 && (
-          <div>
-            {hero.checklistTitle && (
-              <p className="hero__checklist-title">{hero.checklistTitle}</p>
-            )}
-            <ul className="hero__checklist" role="list">
-              {hero.checklist.map((item, i) => (
-                <li key={i} className="hero__checklist-item">
-                  <CheckIcon />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </section>
   )
