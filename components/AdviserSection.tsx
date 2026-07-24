@@ -26,7 +26,12 @@ export default function AdviserSection({ adviser, contact }: Props) {
           />
 
           <div className="adviser__body">
-            <p className="adviser__name">{contact.adviserName}</p>
+            <p className={`adviser__name${contact.adviserTitle ? " adviser__name--with-title" : ""}`}>
+              {contact.adviserName}
+            </p>
+            {contact.adviserTitle && (
+              <p className="adviser__title">{contact.adviserTitle}</p>
+            )}
 
             <div className="adviser__paragraphs">
               {adviser.text.map((p, i) => (

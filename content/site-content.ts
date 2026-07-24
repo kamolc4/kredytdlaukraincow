@@ -44,16 +44,17 @@ export const siteContent: SiteContent = {
 
   // ── DANE KONTAKTOWE ─────────────────────────────────────────────────────────
   contact: {
-    adviserName: "[IMIĘ I NAZWISKO]",
+    adviserName: "Kamil Olczyk",
+    adviserTitle: "Ekspert Kredytowy Lendi",
     companyName: "[NAZWA FIRMY]",
-    phone: "+48000000000",
-    phoneDisplay: "000 000 000",
-    email: "[E-MAIL]",
+    phone: "+48533727030",
+    phoneDisplay: "+48 533 727 030",
+    email: "kamil.olczyk@lendi.pl",
     address: "[ADRES]",
     nip: "[NIP]",
     serviceArea: "[OBSZAR OBSŁUGI]",
     adviserImage: "/adviser-placeholder.svg",
-    privacyEmail: "[E-MAIL DO SPRAW PRYWATNOŚCI]",
+    privacyEmail: "kamil.olczyk@lendi.pl",
   },
 
   // ── NAWIGACJA ───────────────────────────────────────────────────────────────
@@ -464,7 +465,7 @@ export const siteContent: SiteContent = {
   privacyPolicy: {
     adminName: "[IMIĘ I NAZWISKO / NAZWA FIRMY]",
     adminAddress: "[ADRES]",
-    contactEmail: "[E-MAIL DO SPRAW PRYWATNOŚCI]",
+    contactEmail: "kamil.olczyk@lendi.pl",
     dataRetentionPeriod:
       "[OKRES PRZECHOWYWANIA – np. 3 lata od zakończenia współpracy]",
     dataRecipients: [

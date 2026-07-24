@@ -50,6 +50,13 @@ function useUtmParams() {
   return utm
 }
 
+function formatPhoneInput(raw: string): string {
+  const digits = raw.replace(/\D/g, "").slice(0, 9)
+  if (digits.length > 6) return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`
+  if (digits.length > 3) return `${digits.slice(0, 3)} ${digits.slice(3)}`
+  return digits
+}
+
 export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
   const uid = useId()
   const utm = useUtmParams()
@@ -57,11 +64,31 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
 
   const [formState, setFormState] = useState<FormState>({ status: "idle" })
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
+  const [phoneInput, setPhoneInput] = useState("")
 
   const [pageUrl, setPageUrl] = useState("")
   useEffect(() => {
     setPageUrl(window.location.href)
   }, [])
+
+  const nameRef = useRef<HTMLInputElement>(null)
+  const phoneRef = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
+  const creditTypeRef = useRef<HTMLSelectElement>(null)
+  const situationRef = useRef<HTMLSelectElement>(null)
+  const incomeRef = useRef<HTMLSelectElement>(null)
+  const consentRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (Object.keys(fieldErrors).length === 0) return
+    if (fieldErrors.name) { nameRef.current?.focus(); return }
+    if (fieldErrors.phone) { phoneRef.current?.focus(); return }
+    if (fieldErrors.email) { emailRef.current?.focus(); return }
+    if (fieldErrors.creditType) { creditTypeRef.current?.focus(); return }
+    if (fieldErrors.situation) { situationRef.current?.focus(); return }
+    if (fieldErrors.income) { incomeRef.current?.focus(); return }
+    if (fieldErrors.consent) { consentRef.current?.focus(); return }
+  }, [fieldErrors])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -71,10 +98,12 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
     const form = e.currentTarget
     const data = new FormData(form)
 
+    const phoneNormalized = `+48${phoneInput.replace(/\s/g, "")}`
+
     const payload: Record<string, unknown> = {
       name: data.get("name"),
-      phone: data.get("phone"),
-      email: data.get("email") || undefined,
+      phone: phoneNormalized,
+      email: data.get("email"),
       creditType: data.get("creditType"),
       situation: data.get("situation"),
       income: data.get("income"),
@@ -190,21 +219,23 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                   />
                 </div>
 
-                {/* Imię */}
+                {/* Imię i nazwisko */}
                 <div className="form-group">
                   <label className="form-label" htmlFor={`${uid}-name`}>
-                    Imię <span aria-hidden="true">*</span>
+                    Imię i nazwisko <span aria-hidden="true">*</span>
                   </label>
                   <input
+                    ref={nameRef}
                     id={`${uid}-name`}
                     name="name"
                     type="text"
                     className={`form-input${hasError("name") ? " form-input--error" : ""}`}
-                    autoComplete="given-name"
+                    autoComplete="name"
+                    placeholder="np. Anna Kowalska"
                     required
                     aria-required="true"
                     aria-describedby={hasError("name") ? `${uid}-name-error` : undefined}
-                    aria-invalid={hasError("name")}
+                    aria-invalid={hasError("name") || undefined}
                     disabled={isLoading}
                   />
                   {hasError("name") && (
@@ -214,24 +245,30 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                   )}
                 </div>
 
-                {/* Telefon */}
+                {/* Telefon z prefiksem +48 */}
                 <div className="form-group">
                   <label className="form-label" htmlFor={`${uid}-phone`}>
                     Telefon <span aria-hidden="true">*</span>
                   </label>
-                  <input
-                    id={`${uid}-phone`}
-                    name="phone"
-                    type="tel"
-                    className={`form-input${hasError("phone") ? " form-input--error" : ""}`}
-                    autoComplete="tel"
-                    required
-                    aria-required="true"
-                    aria-describedby={hasError("phone") ? `${uid}-phone-error` : undefined}
-                    aria-invalid={hasError("phone")}
-                    disabled={isLoading}
-                    placeholder="np. 600 100 200"
-                  />
+                  <div className={`phone-field${hasError("phone") ? " phone-field--error" : ""}`}>
+                    <span className="phone-field__prefix" aria-hidden="true">+48</span>
+                    <input
+                      ref={phoneRef}
+                      id={`${uid}-phone`}
+                      type="tel"
+                      inputMode="numeric"
+                      value={phoneInput}
+                      onChange={(e) => setPhoneInput(formatPhoneInput(e.target.value))}
+                      placeholder="533 727 030"
+                      autoComplete="tel"
+                      className="phone-field__input"
+                      required
+                      aria-required="true"
+                      aria-describedby={hasError("phone") ? `${uid}-phone-error` : undefined}
+                      aria-invalid={hasError("phone") || undefined}
+                      disabled={isLoading}
+                    />
+                  </div>
                   {hasError("phone") && (
                     <p id={`${uid}-phone-error`} className="form-error" role="alert">
                       {fieldErrors.phone}
@@ -239,18 +276,20 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                   )}
                 </div>
 
-                {/* E-mail (opcjonalny) */}
+                {/* E-mail – wymagany */}
                 <div className="form-group">
                   <label className="form-label" htmlFor={`${uid}-email`}>
-                    E-mail{" "}
-                    <span className="form-label__optional">(opcjonalnie)</span>
+                    E-mail <span aria-hidden="true">*</span>
                   </label>
                   <input
+                    ref={emailRef}
                     id={`${uid}-email`}
                     name="email"
                     type="email"
                     className={`form-input${hasError("email") ? " form-input--error" : ""}`}
                     autoComplete="email"
+                    required
+                    aria-required="true"
                     aria-describedby={hasError("email") ? `${uid}-email-error` : undefined}
                     aria-invalid={hasError("email") || undefined}
                     disabled={isLoading}
@@ -268,13 +307,14 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                     Rodzaj kredytu <span aria-hidden="true">*</span>
                   </label>
                   <select
+                    ref={creditTypeRef}
                     id={`${uid}-creditType`}
                     name="creditType"
                     className={`form-select${hasError("creditType") ? " form-select--error" : ""}`}
                     required
                     aria-required="true"
                     aria-describedby={hasError("creditType") ? `${uid}-creditType-error` : undefined}
-                    aria-invalid={hasError("creditType")}
+                    aria-invalid={hasError("creditType") || undefined}
                     disabled={isLoading}
                     defaultValue=""
                   >
@@ -296,13 +336,14 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                     Status pobytu <span aria-hidden="true">*</span>
                   </label>
                   <select
+                    ref={situationRef}
                     id={`${uid}-situation`}
                     name="situation"
                     className={`form-select${hasError("situation") ? " form-select--error" : ""}`}
                     required
                     aria-required="true"
                     aria-describedby={hasError("situation") ? `${uid}-situation-error` : undefined}
-                    aria-invalid={hasError("situation")}
+                    aria-invalid={hasError("situation") || undefined}
                     disabled={isLoading}
                     defaultValue=""
                   >
@@ -324,13 +365,14 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                     Źródło dochodu <span aria-hidden="true">*</span>
                   </label>
                   <select
+                    ref={incomeRef}
                     id={`${uid}-income`}
                     name="income"
                     className={`form-select${hasError("income") ? " form-select--error" : ""}`}
                     required
                     aria-required="true"
                     aria-describedby={hasError("income") ? `${uid}-income-error` : undefined}
-                    aria-invalid={hasError("income")}
+                    aria-invalid={hasError("income") || undefined}
                     disabled={isLoading}
                     defaultValue=""
                   >
@@ -366,6 +408,7 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                 <div>
                   <div className="form-consent">
                     <input
+                      ref={consentRef}
                       id={`${uid}-consent`}
                       name="consent"
                       type="checkbox"
@@ -373,7 +416,7 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                       required
                       aria-required="true"
                       aria-describedby={hasError("consent") ? `${uid}-consent-error` : undefined}
-                      aria-invalid={hasError("consent")}
+                      aria-invalid={hasError("consent") || undefined}
                       disabled={isLoading}
                     />
                     <label className="form-consent__label" htmlFor={`${uid}-consent`}>

@@ -1,18 +1,13 @@
 export type LeadFormData = {
-  // Dane kontaktowe
   name: string
   phone: string
-  email?: string
-  // Dane kredytowe
+  email: string
   creditType: string
   situation: string
   income: string
   description?: string
-  // Zgoda
   consent: boolean
-  // Honeypot (musi być pusty)
   website?: string
-  // Pola techniczne
   siteName: string
   pageUrl: string
   primaryKeyword: string
@@ -27,34 +22,68 @@ export type LeadSubmitResult =
   | { success: true }
   | { success: false; error: string; fieldErrors?: Record<string, string> }
 
+function isValidName(value: string): boolean {
+  const trimmed = value.trim()
+  if (trimmed.length < 3) return false
+  const parts = trimmed.split(/\s+/)
+  if (parts.length < 2) return false
+  if (!parts.every((p) => /\p{L}/u.test(p))) return false
+  if (!/^[\p{L}\p{M}'\-\s]+$/u.test(trimmed)) return false
+  return true
+}
+
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
+function normalizePhone(raw: string): string {
+  return raw.replace(/[^\d+]/g, "")
+}
+
+function isValidPhone(normalized: string): boolean {
+  if (!/^\+48\d{9}$/.test(normalized)) return false
+  const digits = normalized.slice(3)
+  if (/^(\d)\1{8}$/.test(digits)) return false
+  if (digits === "123456789") return false
+  return true
+}
+
+function formatPhoneDisplay(phone: string): string {
+  if (!phone.startsWith("+48") || phone.length !== 12) return phone
+  const d = phone.slice(3)
+  return `+48 ${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6, 9)}`
+}
+
 export function validateLeadForm(
   data: unknown
 ): { valid: true; data: LeadFormData } | { valid: false; errors: Record<string, string> } {
   const errors: Record<string, string> = {}
   const raw = data as Record<string, unknown>
 
-  // Honeypot – cichy błąd (bot)
+  // Honeypot – cichy sukces (bot)
   if (raw.website) {
     return { valid: true, data: raw as unknown as LeadFormData }
   }
 
-  if (!raw.name || typeof raw.name !== "string" || raw.name.trim().length < 2) {
-    errors.name = "Podaj imię (minimum 2 znaki)"
+  // Imię i nazwisko
+  const rawName = typeof raw.name === "string" ? raw.name : ""
+  if (!isValidName(rawName)) {
+    errors.name = "Podaj imię i nazwisko (np. Anna Kowalska)."
   }
 
-  if (!raw.phone || typeof raw.phone !== "string") {
-    errors.phone = "Podaj numer telefonu"
-  } else {
-    const digits = raw.phone.replace(/[\s\-().+]/g, "")
-    if (!/^\d{9,12}$/.test(digits)) {
-      errors.phone = "Podaj poprawny numer telefonu (9–12 cyfr)"
-    }
+  // Telefon – oczekiwany format +48XXXXXXXXX
+  const rawPhone = typeof raw.phone === "string" ? raw.phone : ""
+  const normalizedPhone = normalizePhone(rawPhone)
+  if (!isValidPhone(normalizedPhone)) {
+    errors.phone = "Podaj poprawny 9-cyfrowy numer telefonu."
   }
 
-  if (raw.email && typeof raw.email === "string" && raw.email.trim()) {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.email)) {
-      errors.email = "Podaj poprawny adres e-mail"
-    }
+  // E-mail – teraz wymagany
+  const rawEmail = typeof raw.email === "string" ? raw.email.trim().toLowerCase() : ""
+  if (!rawEmail) {
+    errors.email = "Podaj poprawny adres e-mail."
+  } else if (!isValidEmail(rawEmail)) {
+    errors.email = "Podaj poprawny adres e-mail."
   }
 
   if (!raw.creditType || typeof raw.creditType !== "string") {
@@ -80,9 +109,9 @@ export function validateLeadForm(
   return {
     valid: true,
     data: {
-      name: String(raw.name).trim(),
-      phone: String(raw.phone).trim(),
-      email: raw.email ? String(raw.email).trim() : undefined,
+      name: rawName.trim(),
+      phone: normalizedPhone,
+      email: rawEmail,
       creditType: String(raw.creditType),
       situation: String(raw.situation),
       income: String(raw.income),
@@ -116,18 +145,18 @@ export function buildLeadEmail(data: LeadFormData): { subject: string; html: str
 
   const subject = `Nowe zapytanie – ${data.siteName} [${data.primaryKeyword}]`
 
-  const rows = [
+  const rows: [string, string][] = [
     ["Strona", data.siteName],
     ["URL", data.pageUrl],
     ["Fraza", data.primaryKeyword],
     ["Data", now],
     ["─────", "──────────────────────────"],
-    ["Imię", data.name],
-    ["Telefon", data.phone],
-    ["E-mail", data.email || "–"],
+    ["Imię i nazwisko", data.name],
+    ["Telefon", formatPhoneDisplay(data.phone)],
+    ["E-mail", data.email],
     ["─────", "──────────────────────────"],
     ["Rodzaj kredytu", data.creditType],
-    ["Sytuacja", data.situation],
+    ["Status pobytu", data.situation],
     ["Dochód", data.income],
     ["Opis", data.description || "–"],
     ["─────", "──────────────────────────"],

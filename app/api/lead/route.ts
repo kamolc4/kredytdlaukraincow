@@ -35,9 +35,9 @@ export async function POST(req: NextRequest) {
       console.log("📩 LEAD (tryb dev – Resend nie skonfigurowany)")
       console.log("──────────────────────────────────────")
       console.log(`Strona:    ${data.siteName}`)
-      console.log(`Imię:      ${data.name}`)
-      console.log(`Telefon:   ${data.phone}`)
-      console.log(`E-mail:    ${data.email || "–"}`)
+      console.log(`Imię i nazwisko: ${data.name}`)
+      console.log(`Telefon:         ${data.phone}`)
+      console.log(`E-mail:          ${data.email}`)
       console.log(`Kredyt:    ${data.creditType}`)
       console.log(`Sytuacja:  ${data.situation}`)
       console.log(`Dochód:    ${data.income}`)
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
       subject: email.subject,
       html: email.html,
       text: email.text,
-      replyTo: data.email || undefined,
+      replyTo: data.email,
     })
     return NextResponse.json({ success: true })
   } catch (err) {

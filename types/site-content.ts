@@ -84,6 +84,7 @@ export type SiteContent = {
 
   contact: {
     adviserName: string
+    adviserTitle?: string
     companyName: string
     phone: string
     phoneDisplay: string

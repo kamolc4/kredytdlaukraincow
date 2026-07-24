@@ -83,7 +83,7 @@ export function buildJsonLd(config: SiteContent): object[] {
       "@context": "https://schema.org",
       "@type": "Person",
       name: contact.adviserName,
-      jobTitle: "Doradca kredytowy",
+      jobTitle: contact.adviserTitle || "Doradca kredytowy",
       worksFor: isReal(contact.companyName)
         ? { "@type": "Organization", name: contact.companyName }
         : undefined,
