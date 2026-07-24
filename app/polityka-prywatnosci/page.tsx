@@ -282,10 +282,41 @@ export default function PrivacyPage() {
               z serwisu.
             </p>
             <p>
-              Swoją decyzję możesz zmienić w dowolnym momencie, klikając
-              przycisk poniżej lub link „Ustawienia cookies" w stopce strony.
+              Swoją decyzję dotyczącą plików cookies możesz zmienić w dowolnym
+              momencie, korzystając z przycisku „Ustawienia cookies"
+              znajdującego się poniżej.
             </p>
             <CookieSettingsButton className="btn btn--outline" />
+          </section>
+
+          {/* 13. Narzędzia analityczne */}
+          <section>
+            <h2>13. Narzędzia analityczne</h2>
+            <p>
+              Serwis może korzystać z narzędzi analitycznych, takich jak Google
+              Analytics 4, Google Tag Manager lub Microsoft Clarity. Narzędzia
+              te mogą być wykorzystywane wyłącznie po uzyskaniu wyraźnej zgody
+              użytkownika.
+            </p>
+            <p>
+              Narzędzia analityczne służą do analizowania sposobu korzystania z
+              serwisu, pomagają poprawiać jego działanie oraz komfort
+              użytkowników. Mogą one zbierać anonimowe dane o ruchu, kliknięciach,
+              czasie spędzonym na stronie i podobnych zdarzeniach.
+            </p>
+            <p>
+              Zgoda na korzystanie z narzędzi analitycznych jest dobrowolna i
+              niezależna od możliwości skorzystania z formularza kontaktowego.
+              Użytkownik może w każdej chwili wycofać lub zmienić swoją zgodę,
+              korzystając z przycisku „Ustawienia cookies" na stronie Polityki
+              prywatności.
+            </p>
+            <p>
+              Dostawcy tych narzędzi mogą przetwarzać dane zgodnie z własnymi
+              politykami prywatności. Administratorami danych w rozumieniu tych
+              narzędzi są odpowiednio: Google LLC (Google Analytics 4, Google Tag
+              Manager) oraz Microsoft Corporation (Microsoft Clarity).
+            </p>
           </section>
 
           <p className="privacy-page__updated">

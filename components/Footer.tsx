@@ -1,5 +1,4 @@
 import type { SiteContent } from "@/types/site-content"
-import CookieSettingsButton from "./CookieSettingsButton"
 
 type Props = {
   footer: SiteContent["footer"]
@@ -56,9 +55,6 @@ export default function Footer({ footer, brand, contact }: Props) {
                   Polityka prywatności
                 </a>
               </li>
-              <li>
-                <CookieSettingsButton className="footer__cookie-btn" />
-              </li>
               {contact.creditReportUrl && (
                 <li>
                   <a
@@ -67,7 +63,7 @@ export default function Footer({ footer, brand, contact }: Props) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    RaportKredytowy.pl
+                    Portal poradnikowy: RaportKredytowy.pl
                   </a>
                 </li>
               )}
