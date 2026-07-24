@@ -193,6 +193,16 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                 <span>Kontakt nastąpi po zapoznaniu się z Twoją sytuacją</span>
               </li>
             </ul>
+
+            <div className="form-layout__next-steps">
+              <p className="form-layout__next-steps-title">Co stanie się po wysłaniu?</p>
+              <ol className="form-layout__next-steps-list">
+                <li>Analizuję Twoje zapytanie na podstawie podanych informacji.</li>
+                <li>Kontaktuję się z Tobą telefonicznie lub e-mailowo.</li>
+                <li>Omawiamy dostępne opcje i wymagania dla Twojej sytuacji.</li>
+                <li>Jeżeli sytuacja daje podstawy do działania, pomagam przejść do kolejnych kroków.</li>
+              </ol>
+            </div>
           </div>
 
           {/* Prawa kolumna: karta formularza */}
@@ -458,6 +468,9 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
                       config.submitLabel
                     )}
                   </button>
+                  <p className="form-submit__note">
+                    Numer telefonu służy wyłącznie do kontaktu w sprawie Twojego zapytania.
+                  </p>
                 </div>
               </form>
             </div>

@@ -78,8 +78,8 @@ export const siteContent: SiteContent = {
       href: "#formularz",
     },
     secondaryCta: {
-      label: "Zadzwoń do eksperta",
-      href: "tel:+48533727030",
+      label: "Jak wygląda analiza?",
+      href: "#proces",
     },
     checklistTitle: "Bank może brać pod uwagę:",
     checklist: [
@@ -377,8 +377,9 @@ export const siteContent: SiteContent = {
     id: "doradca",
     title: "Kto analizuje Twoją sytuację?",
     text: [
-      "Każda sytuacja jest analizowana indywidualnie. Wstępna rozmowa służy ustaleniu, jakie informacje i dokumenty będą potrzebne oraz czy istnieje realna podstawa do dalszego porównania możliwości finansowania.",
-      "Zakres dalszej pomocy zależy od rodzaju kredytu, sytuacji klienta, dokumentów oraz aktualnych zasad instytucji finansowych.",
+      "Każde zapytanie analizuję osobiście i indywidualnie. Kontaktujesz się bezpośrednio ze mną – nie z botem ani automatycznym systemem.",
+      "Wstępna analiza służy ustaleniu, czy i jakie opcje finansowania mogą być dostępne w Twojej sytuacji. Zanim przejdziemy do kolejnych kroków, sprawdzam, jakie informacje i dokumenty będą potrzebne.",
+      "Zakres dalszej pomocy zależy od rodzaju kredytu, statusu pobytu, dochodu i aktualnych zasad instytucji finansowych. Celem jest znalezienie rozwiązania najlepiej dopasowanego do Twojej sytuacji.",
     ],
   },
 

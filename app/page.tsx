@@ -11,6 +11,7 @@ import FAQ from "@/components/FAQ"
 import FinalCTA from "@/components/FinalCTA"
 import Footer from "@/components/Footer"
 import StickyMobileCTA from "@/components/StickyMobileCTA"
+import WhoIHelpSection from "@/components/WhoIHelpSection"
 
 export default function HomePage() {
   const {
@@ -59,6 +60,8 @@ export default function HomePage() {
           contact={contact}
         />
 
+        <WhoIHelpSection />
+
         <LeadForm
           config={form}
           siteName={site.name}
@@ -71,7 +74,7 @@ export default function HomePage() {
       </main>
 
       <Footer footer={footer} brand={brand} contact={contact} siteName={site.name} />
-      <StickyMobileCTA phone={contact.phone} phoneDisplay={contact.phoneDisplay} />
+      <StickyMobileCTA />
     </>
   )
 }
