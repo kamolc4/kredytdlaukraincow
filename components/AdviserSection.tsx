@@ -19,7 +19,7 @@ export default function AdviserSection({ adviser, contact }: Props) {
         <div className="adviser" style={{ marginTop: "1.5rem" }}>
           <Image
             src={contact.adviserImage}
-            alt={contact.adviserName}
+            alt={[contact.adviserName, contact.adviserTitle].filter(Boolean).join(", ")}
             width={120}
             height={120}
             className="adviser__image"

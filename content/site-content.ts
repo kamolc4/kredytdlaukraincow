@@ -53,7 +53,7 @@ export const siteContent: SiteContent = {
     address: "[ADRES]",
     nip: "[NIP]",
     serviceArea: "[OBSZAR OBSŁUGI]",
-    adviserImage: "/adviser-placeholder.svg",
+    adviserImage: "/images/MyPhoto.png",
     privacyEmail: "kamil.olczyk@lendi.pl",
   },
 
