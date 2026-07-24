@@ -45,7 +45,7 @@ export const siteContent: SiteContent = {
   // ── DANE KONTAKTOWE ─────────────────────────────────────────────────────────
   contact: {
     adviserName: "Kamil Olczyk",
-    adviserTitle: "Ekspert Kredytowy Lendi",
+    adviserTitle: "Ekspert Kredytowy",
     companyName: "[NAZWA FIRMY]",
     phone: "+48533727030",
     phoneDisplay: "+48 533 727 030",
