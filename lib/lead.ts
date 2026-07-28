@@ -48,11 +48,6 @@ function isValidPhone(normalized: string): boolean {
   return true
 }
 
-function formatPhoneDisplay(phone: string): string {
-  if (!phone.startsWith("+48") || phone.length !== 12) return phone
-  const d = phone.slice(3)
-  return `+48 ${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6, 9)}`
-}
 
 export function validateLeadForm(
   data: unknown
@@ -130,54 +125,3 @@ export function validateLeadForm(
   }
 }
 
-export function buildLeadEmail(data: LeadFormData): { subject: string; html: string; text: string } {
-  const now = new Date().toLocaleString("pl-PL", { timeZone: "Europe/Warsaw" })
-
-  const utm = [
-    data.utmSource ? `source: ${data.utmSource}` : null,
-    data.utmMedium ? `medium: ${data.utmMedium}` : null,
-    data.utmCampaign ? `campaign: ${data.utmCampaign}` : null,
-    data.utmTerm ? `term: ${data.utmTerm}` : null,
-    data.utmContent ? `content: ${data.utmContent}` : null,
-  ]
-    .filter(Boolean)
-    .join(", ")
-
-  const subject = `Nowe zapytanie – ${data.siteName} [${data.primaryKeyword}]`
-
-  const rows: [string, string][] = [
-    ["Strona", data.siteName],
-    ["URL", data.pageUrl],
-    ["Fraza", data.primaryKeyword],
-    ["Data", now],
-    ["─────", "──────────────────────────"],
-    ["Imię i nazwisko", data.name],
-    ["Telefon", formatPhoneDisplay(data.phone)],
-    ["E-mail", data.email],
-    ["─────", "──────────────────────────"],
-    ["Rodzaj kredytu", data.creditType],
-    ["Status pobytu", data.situation],
-    ["Dochód", data.income],
-    ["Opis", data.description || "–"],
-    ["─────", "──────────────────────────"],
-    ["UTM", utm || "–"],
-  ]
-
-  const textBody = rows.map(([k, v]) => `${k}: ${v}`).join("\n")
-
-  const htmlRows = rows
-    .map(([k, v]) =>
-      k.startsWith("─")
-        ? `<tr><td colspan="2" style="padding:4px 0;border-top:1px solid #e0e0e0"></td></tr>`
-        : `<tr><td style="padding:4px 12px 4px 0;color:#555;white-space:nowrap;vertical-align:top">${k}</td><td style="padding:4px 0;font-weight:500">${v}</td></tr>`
-    )
-    .join("")
-
-  const html = `<!DOCTYPE html><html lang="pl"><body style="font-family:system-ui,sans-serif;color:#111;max-width:560px;margin:0 auto;padding:24px">
-<h2 style="margin:0 0 16px;font-size:18px">Nowe zapytanie kredytowe</h2>
-<table style="width:100%;border-collapse:collapse">${htmlRows}</table>
-<p style="margin-top:24px;font-size:12px;color:#999">Wiadomość wygenerowana automatycznie przez ${data.siteName}</p>
-</body></html>`
-
-  return { subject, html, text: textBody }
-}

@@ -1,5 +1,34 @@
 import { NextRequest, NextResponse } from "next/server"
-import { validateLeadForm, buildLeadEmail } from "@/lib/lead"
+import { validateLeadForm } from "@/lib/lead"
+
+function escapeHtml(text: string): string {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+}
+
+function field(value: string | undefined): string {
+  return value ? escapeHtml(value) : "-"
+}
+
+function buildTelegramMessage(data: ReturnType<typeof validateLeadForm> & { valid: true }): string {
+  const d = data.data
+  return [
+    `🏠 <b>New Lead</b>`,
+    ``,
+    `👤 <b>Name:</b> ${field(d.name)}`,
+    `📞 <b>Phone:</b> ${field(d.phone)}`,
+    `📧 <b>Email:</b> ${field(d.email)}`,
+    ``,
+    `🇺🇦 <b>Status:</b> ${field(d.situation)}`,
+    `💼 <b>Employment:</b> ${field(d.income)}`,
+    `💰 <b>Monthly income:</b> -`,
+    `🏦 <b>Loan amount:</b> ${field(d.creditType)}`,
+    ``,
+    `📝 <b>Message:</b>`,
+    field(d.description),
+    ``,
+    `🌐 kredytdlaukraincow.pl`,
+  ].join("\n")
+}
 
 export async function POST(req: NextRequest) {
   let body: unknown
@@ -25,23 +54,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const contactEmail = process.env.CONTACT_EMAIL
-  const fromEmail = process.env.FROM_EMAIL || "lead@noreply.example.com"
+  const botToken = process.env.TELEGRAM_BOT_TOKEN
+  const chatId = process.env.TELEGRAM_CHAT_ID
 
-  if (!apiKey || !contactEmail) {
+  if (!botToken || !chatId) {
     if (process.env.NODE_ENV === "development") {
       console.log("\n──────────────────────────────────────")
-      console.log("📩 LEAD (tryb dev – Resend nie skonfigurowany)")
+      console.log("📩 LEAD (tryb dev – Telegram nie skonfigurowany)")
       console.log("──────────────────────────────────────")
-      console.log(`Strona:    ${data.siteName}`)
       console.log(`Imię i nazwisko: ${data.name}`)
       console.log(`Telefon:         ${data.phone}`)
       console.log(`E-mail:          ${data.email}`)
-      console.log(`Kredyt:    ${data.creditType}`)
-      console.log(`Sytuacja:  ${data.situation}`)
-      console.log(`Dochód:    ${data.income}`)
-      if (data.description) console.log(`Opis:      ${data.description}`)
+      console.log(`Status:          ${data.situation}`)
+      console.log(`Zatrudnienie:    ${data.income}`)
+      console.log(`Kredyt:          ${data.creditType}`)
+      if (data.description) console.log(`Opis:            ${data.description}`)
       console.log("──────────────────────────────────────\n")
       return NextResponse.json({ success: true })
     }
@@ -51,25 +78,25 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { Resend } = await import("resend")
-  const resend = new Resend(apiKey)
-  const email = buildLeadEmail(data)
+  const text = buildTelegramMessage(result)
 
   try {
-    await resend.emails.send({
-      from: fromEmail,
-      to: contactEmail,
-      subject: email.subject,
-      html: email.html,
-      text: email.text,
-      replyTo: data.email,
-    })
-    return NextResponse.json({ success: true })
-  } catch (err) {
-    console.error("[lead] Błąd wysyłania e-mail:", err)
-    return NextResponse.json(
-      { error: "Nie udało się wysłać formularza. Spróbuj ponownie lub zadzwoń do nas." },
-      { status: 500 }
+    const response = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML" }),
+      }
     )
+
+    if (!response.ok) {
+      const errorBody = await response.text()
+      console.error("[lead] Telegram error:", response.status, errorBody)
+    }
+  } catch (err) {
+    console.error("[lead] Błąd wysyłania Telegram:", err)
   }
+
+  return NextResponse.json({ success: true })
 }
