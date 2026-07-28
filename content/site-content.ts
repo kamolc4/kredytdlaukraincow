@@ -512,7 +512,7 @@ export const siteContent: SiteContent = {
       "dokumenty do kredytu dla Ukraińca",
     ],
     // WAŻNE: ustaw na false dopiero po uzupełnieniu wszystkich danych i konfiguracji Resend
-    noindex: true,
+    noindex: false,
     schemaType: "FinancialService",
   },
 }
