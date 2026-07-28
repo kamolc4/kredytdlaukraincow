@@ -194,14 +194,26 @@ export default function LeadForm({ config, siteName, primaryKeyword }: Props) {
               </li>
             </ul>
 
-            <div className="form-layout__next-steps">
-              <p className="form-layout__next-steps-title">Co stanie się po wysłaniu?</p>
-              <ol className="form-layout__next-steps-list">
-                <li>Analizuję Twoje zapytanie na podstawie podanych informacji.</li>
-                <li>Kontaktuję się z Tobą telefonicznie lub e-mailowo.</li>
-                <li>Omawiamy dostępne opcje i wymagania dla Twojej sytuacji.</li>
-                <li>Jeżeli sytuacja daje podstawy do działania, pomagam przejść do kolejnych kroków.</li>
-              </ol>
+            <div className="form-trust-box">
+              <p className="form-trust-box__title">Twoje dane są bezpieczne</p>
+              <ul className="form-trust-box__list" role="list">
+                <li className="form-trust-box__item">
+                  <span className="form-trust-box__check" aria-hidden="true">✓</span>
+                  <span>Formularz nie jest wysyłany do banków</span>
+                </li>
+                <li className="form-trust-box__item">
+                  <span className="form-trust-box__check" aria-hidden="true">✓</span>
+                  <span>Dane służą wyłącznie do wstępnej analizy</span>
+                </li>
+                <li className="form-trust-box__item">
+                  <span className="form-trust-box__check" aria-hidden="true">✓</span>
+                  <span>Kontakt następuje po zapoznaniu się z formularzem</span>
+                </li>
+                <li className="form-trust-box__item">
+                  <span className="form-trust-box__check" aria-hidden="true">✓</span>
+                  <span>Formularz nie powoduje zapytania do BIK</span>
+                </li>
+              </ul>
             </div>
           </div>
 

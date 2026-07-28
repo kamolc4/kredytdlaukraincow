@@ -1,17 +1,21 @@
 import { siteContent } from "@/lib/site-config"
 import Header from "@/components/Header"
 import Hero from "@/components/Hero"
+import ExpertNoteBox from "@/components/ExpertNoteBox"
 import QuickAnswer from "@/components/QuickAnswer"
 import SectionRenderer from "@/components/SectionRenderer"
-import ProcessSection from "@/components/ProcessSection"
 import IssuesSection from "@/components/IssuesSection"
-import LeadForm from "@/components/LeadForm"
+import BanksDifferSection from "@/components/BanksDifferSection"
+import TrustBlock from "@/components/TrustBlock"
+import ProcessSection from "@/components/ProcessSection"
+import WhoIHelpSection from "@/components/WhoIHelpSection"
 import AdviserSection from "@/components/AdviserSection"
+import PreFormSection from "@/components/PreFormSection"
+import LeadForm from "@/components/LeadForm"
 import FAQ from "@/components/FAQ"
 import FinalCTA from "@/components/FinalCTA"
 import Footer from "@/components/Footer"
 import StickyMobileCTA from "@/components/StickyMobileCTA"
-import WhoIHelpSection from "@/components/WhoIHelpSection"
 
 export default function HomePage() {
   const {
@@ -45,6 +49,8 @@ export default function HomePage() {
       <main id="main-content">
         <Hero hero={hero} />
 
+        <ExpertNoteBox />
+
         <QuickAnswer section={quickAnswer} />
 
         {sections.map((section) => (
@@ -53,14 +59,20 @@ export default function HomePage() {
 
         <IssuesSection issues={issues} />
 
+        <BanksDifferSection />
+
+        <TrustBlock />
+
         <ProcessSection process={process} />
+
+        <WhoIHelpSection />
 
         <AdviserSection
           adviser={adviser}
           contact={contact}
         />
 
-        <WhoIHelpSection />
+        <PreFormSection />
 
         <LeadForm
           config={form}
