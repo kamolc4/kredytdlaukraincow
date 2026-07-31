@@ -17,11 +17,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
-    {
-      url: `${base}/polityka-prywatnosci`,
-      lastModified: site.lastUpdated,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
   ]
 }

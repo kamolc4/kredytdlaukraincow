@@ -6,8 +6,9 @@ const { site, contact, brand } = siteContent
 
 export const metadata: Metadata = {
   title: `Polityka prywatności – ${site.name}`,
-  description: `Polityka prywatności serwisu ${site.domain}.`,
-  robots: { index: false, follow: false },
+  description:
+    "Polityka prywatności serwisu KredytDlaUkraincow.pl. Sprawdź zasady przetwarzania danych, wykorzystywania formularza kontaktowego i plików cookies.",
+  robots: { index: false, follow: true },
   alternates: { canonical: "/polityka-prywatnosci" },
 }
 

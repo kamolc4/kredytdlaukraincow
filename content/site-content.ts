@@ -14,17 +14,17 @@ export const siteContent: SiteContent = {
   site: {
     name: "Kredyt dla Ukraińców",
     domain: "kredytdlaukraincow.pl",
-    canonicalUrl: "https://kredytdlaukraincow.pl",
+    canonicalUrl: "https://www.kredytdlaukraincow.pl",
     language: "pl",
     locale: "pl_PL",
     // Tytuł strony (do ~60 znaków)
     title: "Kredyt dla Ukraińców - kredyt hipoteczny bez karty pobytu",
     // Meta description (do ~155 znaków)
     description:
-      "Sprawdź, czy możesz otrzymać kredyt hipoteczny lub gotówkowy jako obywatel Ukrainy. Możliwa analiza również bez karty pobytu. Wypełnij formularz i sprawdź swoją sytuację.",
+      "Sprawdź kredyt dla Ukraińców w Polsce: hipoteczny lub gotówkowy, także bez karty pobytu. Poznaj wymagania i poproś o analizę sytuacji.",
     ogTitle: "Kredyt dla Ukraińców - kredyt hipoteczny bez karty pobytu",
     ogDescription:
-      "Sprawdź, czy możesz otrzymać kredyt hipoteczny lub gotówkowy jako obywatel Ukrainy. Możliwa analiza również bez karty pobytu.",
+      "Sprawdź kredyt dla Ukraińców w Polsce: hipoteczny lub gotówkowy, także bez karty pobytu. Poznaj wymagania i poproś o analizę sytuacji.",
     lastUpdated: "2026-07-24",
   },
 
